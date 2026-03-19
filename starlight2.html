@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Starlight 2 — Звёздный английский</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+<style>@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap');
+:root{--bg:#FFFAF3;--card:#fff;--text:#2A2530;--text2:#7A7384;--sh:0 2px 12px rgba(40,35,50,.07);--shl:0 8px 28px rgba(40,35,50,.11);--r:18px;--rs:12px;--ok:#2D8B57;--no:#D04040;--gold:#EFA520}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}.app{max-width:500px;margin:0 auto;min-height:100vh;padding-bottom:40px}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}@keyframes si{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}@keyframes pop{0%{transform:scale(.4);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}.fu{animation:fu .35s ease-out both}.si{animation:si .3s ease-out both}
+.hdr{padding:28px 22px 10px;text-align:center}.hdr h1{font-size:26px;font-weight:900}.hdr .sub{font-family:'Literata',serif;font-size:14px;color:var(--text2);margin-top:2px}
+.mlist{padding:6px 18px 20px}.mc{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:18px 20px;margin-bottom:14px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden}.mc:hover{transform:translateY(-2px);box-shadow:var(--shl)}.mc:active{transform:scale(.98)}.mc-bar{position:absolute;top:0;left:0;right:0;height:4px}.mc-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;color:#fff;font-weight:800;font-size:15px;margin-bottom:8px}.mc-t{font-size:17px;font-weight:800}.mc-tr{font-family:'Literata',serif;font-size:13px;color:var(--text2)}.mc-info{margin-top:8px;font-size:12px;color:var(--text2);font-weight:600}
+.ph{display:flex;align-items:center;gap:12px;padding:18px 18px 10px}.bb{width:38px;height:38px;border-radius:11px;background:var(--card);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh);color:var(--text);transition:all .12s;flex-shrink:0}.bb:hover{background:#f0ebe3}.pt{font-size:18px;font-weight:800}.ps{font-family:'Literata',serif;font-size:12px;color:var(--text2)}
+.llist{padding:6px 18px 20px}.lc{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:16px 18px;margin-bottom:10px;cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:space-between}.lc:hover{transform:translateY(-1px);box-shadow:var(--shl)}.lc h3{font-size:15px;font-weight:700}.lc p{font-family:'Literata',serif;font-size:12px;color:var(--text2)}
+.tabs{display:flex;gap:5px;padding:2px 18px;margin-bottom:6px}.tab{flex:1;padding:9px 6px;border-radius:var(--rs);border:none;font-family:'Nunito',sans-serif;font-weight:700;font-size:12px;cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;gap:5px;background:var(--card);color:var(--text2);box-shadow:var(--sh)}.tab.on{color:#fff;box-shadow:var(--shl)}
+.cnt{padding:10px 18px 24px}
+.pc{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:18px;margin-bottom:12px}.pc-top{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}.pc-l{font-size:28px;font-weight:900;padding:4px 14px;border-radius:9px}.pc-eq{font-size:20px;color:#ccc}.pc-rus{font-size:20px;font-weight:800}.pc-ipa{font-family:'Literata',serif;color:var(--text2);font-size:14px;margin-left:2px}.pc-r{font-size:13.5px;line-height:1.5;padding:9px 13px;background:var(--bg);border-radius:var(--rs);margin-bottom:10px}.pc-ex{display:flex;gap:7px;flex-wrap:wrap}.pc-ex span{padding:5px 12px;border-radius:7px;font-weight:700;font-size:14px}
+.wc{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:14px 18px;margin-bottom:9px}.wc-top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.wc-en{font-size:20px;font-weight:800;display:flex;align-items:baseline;gap:2px;flex-wrap:wrap}.wc-en .hi{padding:1px 3px;border-radius:4px}.wc-ts{font-family:'Literata',serif;font-size:13px;color:var(--text2);padding:3px 10px;background:var(--bg);border-radius:6px;display:flex;gap:6px;align-items:center}.wc-ts .ru{font-weight:600;color:var(--text)}.wc-ts .sep{color:#ccc;font-size:10px}.wc-ts .ipa{color:var(--text2)}.wc-ru{font-family:'Literata',serif;font-size:14px;color:var(--text2);margin:3px 0 7px}.wc-bd{display:flex;align-items:center;gap:1px;font-size:13px;padding:7px 11px;background:var(--bg);border-radius:var(--rs);flex-wrap:wrap}.wb{display:inline-flex;align-items:center;gap:2px;padding:2px 5px;border-radius:4px;margin:1px}.wb.hi{background:rgba(0,0,0,.05)}.wb-l{font-weight:700}.wb-a{color:var(--text2);font-size:10px;margin:0 1px}.wb-s{font-family:'Literata',serif;color:var(--text2)}
+.prh{text-align:center;margin-bottom:14px}.prd{display:flex;gap:3px;justify-content:center;margin-bottom:8px;flex-wrap:wrap;max-width:340px;margin-left:auto;margin-right:auto}.dot{width:8px;height:8px;border-radius:50%;background:#e0dbd3;transition:all .25s}.dot.ok{background:var(--ok)}.dot.no{background:var(--no)}.dot.cur{background:var(--gold);transform:scale(1.35)}.prc{font-size:12px;color:var(--text2);font-weight:600}
+.tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.qc{background:var(--card);border-radius:var(--r);box-shadow:var(--shl);padding:24px 20px;text-align:center;margin-bottom:14px}.qw{font-size:28px;font-weight:900;margin-bottom:2px;word-break:break-word}.qipa{font-family:'Literata',serif;font-size:13px;color:var(--text2);margin-bottom:2px}.qh{font-family:'Literata',serif;font-size:13px;color:var(--text2);margin-bottom:16px}.qo{display:flex;flex-direction:column;gap:7px}.qob{padding:13px 18px;border-radius:var(--rs);border:2px solid #e8e3db;background:var(--card);font-family:'Nunito',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all .15s;text-align:left}.qob:hover:not(:disabled){border-color:#ccc;background:var(--bg)}.qob.ok{border-color:var(--ok);background:#e8f5e9;color:var(--ok)}.qob.no{border-color:var(--no);background:#fde8e8;color:var(--no)}.qob:disabled{cursor:default}
+.qfb{margin-top:14px;padding:10px 14px;border-radius:var(--rs);font-weight:700;font-size:14px;animation:pop .3s ease-out;display:flex;align-items:center;justify-content:center;gap:7px}.qfb.ok{background:#e8f5e9;color:var(--ok)}.qfb.no{background:#fde8e8;color:var(--no)}
+.nb{margin-top:14px;padding:12px 28px;border-radius:var(--rs);border:none;color:#fff;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .12s;display:inline-flex;align-items:center;gap:6px}.nb:hover{opacity:.9;transform:translateY(-1px)}
+.res{text-align:center;padding:36px 20px}.res-sc{font-size:44px;font-weight:900;margin-bottom:2px}.res h2{font-size:22px;font-weight:900;margin-bottom:4px}.res p{font-family:'Literata',serif;font-size:14px;color:var(--text2);margin-bottom:22px}
+.rb{padding:11px 22px;border-radius:var(--rs);border:2px solid var(--text);background:var(--text);color:#fff;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .12s;display:inline-flex;align-items:center;gap:5px}.rb:hover{opacity:.9}
+.gram-btn{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;border-radius:var(--r);padding:18px 20px;margin:0 18px 14px;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:12px;width:calc(100% - 36px);box-shadow:var(--sh);text-align:left}.gram-btn:hover{transform:translateY(-2px);box-shadow:var(--shl)}.gram-btn:active{transform:scale(.98)}.gram-btn .gb-icon{font-size:28px;flex-shrink:0}.gram-btn .gb-t{font-size:16px;font-weight:800}.gram-btn .gb-s{font-size:12px;opacity:.85;font-family:'Literata',serif}
+.gl{padding:6px 18px 20px}.gc{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:16px 18px;margin-bottom:10px;cursor:pointer;transition:all .18s;border-left:4px solid}.gc:hover{transform:translateY(-1px);box-shadow:var(--shl)}.gc h3{font-size:15px;font-weight:800}.gc p{font-family:'Literata',serif;font-size:12px;color:var(--text2)}
+.gr-card{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:18px;margin-bottom:14px}.gr-rule{font-size:15px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}.gr-rule::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}.gr-exs{display:flex;flex-wrap:wrap;gap:6px;padding-left:14px}.gr-ex{padding:5px 12px;border-radius:8px;font-size:14px;font-weight:600;font-family:'Nunito',sans-serif}
+.sep-line{height:1px;background:#e8e3db;margin:8px 18px 16px}
+.part-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text2);padding:12px 22px 4px}
+.theory-box{background:linear-gradient(135deg,#f8f4ff,#fff8f0);border-left:4px solid;padding:14px 16px;border-radius:0 var(--rs) var(--rs) 0;margin-bottom:14px;font-size:14px;line-height:1.65}
+.theory-box h4{font-size:15px;font-weight:800;margin-bottom:4px}
+.theory-box p{color:var(--text);margin-bottom:8px}
+.theory-box .tex{padding:5px 12px;border-radius:8px;font-weight:600;font-size:13.5px;display:block;margin:3px 0;background:rgba(0,0,0,.03);line-height:1.6}
+.gram-tabs{display:flex;gap:5px;padding:2px 18px;margin-bottom:6px}
+.gram-tab{flex:1;padding:9px 6px;border-radius:var(--rs);border:none;font-family:'Nunito',sans-serif;font-weight:700;font-size:12px;cursor:pointer;transition:all .18s;background:var(--card);color:var(--text2);box-shadow:var(--sh);text-align:center;display:flex;align-items:center;justify-content:center;gap:5px}
+.gram-tab.on{color:#fff;box-shadow:var(--shl)}
+.gram-tab svg{width:14px;height:14px;flex-shrink:0}
+</style>
+</head>
+<body>
+<div id="app" class="app"></div>
+<script>
+const MODULES = [
+  {
+    id: 0, title: "My Letters!", titleRu: "Мои буквы!", color: "#6D4C41",
+    lessons: [
+      {
+        id: "0a", title: "Aa — Mm", titleRu: "Буквы A — M",
+        phonics: [
+          { letters: "a", rus: "э", ipa: "/æ/", rule: "Буква A в закрытом слоге читается как широкое «э».", examples: ["apple", "ant", "cat"] },
+          { letters: "b", rus: "б", ipa: "/b/", rule: "Буква B читается как «б».", examples: ["ball", "bed", "bus"] },
+          { letters: "c", rus: "к", ipa: "/k/", rule: "Буква C перед a, o, u читается как «к».", examples: ["cat", "cup", "car"] },
+          { letters: "d", rus: "д", ipa: "/d/", rule: "Буква D читается как «д».", examples: ["dog", "doll", "dad"] },
+          { letters: "e", rus: "э", ipa: "/e/", rule: "Буква E в закрытом слоге читается как «э».", examples: ["egg", "bed", "pen"] },
+          { letters: "f", rus: "ф", ipa: "/f/", rule: "Буква F читается как «ф».", examples: ["fish", "fun", "fox"] },
+          { letters: "g", rus: "г", ipa: "/g/", rule: "Буква G читается как «г».", examples: ["go", "game", "green"] },
+          { letters: "h", rus: "х (лёгкое)", ipa: "/h/", rule: "Буква H — лёгкий выдох, как «х», но мягче.", examples: ["hat", "hot", "happy"] },
+          { letters: "i", rus: "и", ipa: "/ɪ/", rule: "Буква I в закрытом слоге читается как «и».", examples: ["is", "it", "big"] },
+          { letters: "j", rus: "дж", ipa: "/dʒ/", rule: "Буква J читается как «дж».", examples: ["jump", "jam", "jeans"] },
+          { letters: "k", rus: "к", ipa: "/k/", rule: "Буква K читается как «к».", examples: ["kite", "king", "kick"] },
+          { letters: "l", rus: "л", ipa: "/l/", rule: "Буква L читается как «л».", examples: ["leg", "lamp", "look"] },
+          { letters: "m", rus: "м", ipa: "/m/", rule: "Буква M читается как «м».", examples: ["map", "man", "mum"] },
+        ],
+        words: [
+          { en: "apple", ru: "яблоко", ts: "эпл", ipa: "/ˈæpl/", breakdown: [{ t: "a", s: "э", hi: true }, { t: "pple", s: "пл" }] },
+          { en: "cat", ru: "кошка", ts: "кэт", ipa: "/kæt/", breakdown: [{ t: "c", s: "к" }, { t: "a", s: "э", hi: true }, { t: "t", s: "т" }] },
+          { en: "dog", ru: "собака", ts: "дог", ipa: "/dɒɡ/", breakdown: [{ t: "d", s: "д" }, { t: "o", s: "о", hi: true }, { t: "g", s: "г" }] },
+          { en: "egg", ru: "яйцо", ts: "эг", ipa: "/eɡ/", breakdown: [{ t: "e", s: "э", hi: true }, { t: "gg", s: "г" }] },
+          { en: "fish", ru: "рыба", ts: "фиш", ipa: "/fɪʃ/", breakdown: [{ t: "f", s: "ф" }, { t: "i", s: "и", hi: true }, { t: "sh", s: "ш" }] },
+          { en: "hat", ru: "шляпа", ts: "хэт", ipa: "/hæt/", breakdown: [{ t: "h", s: "х" }, { t: "a", s: "э", hi: true }, { t: "t", s: "т" }] },
+          { en: "jam", ru: "варенье", ts: "джэм", ipa: "/dʒæm/", breakdown: [{ t: "j", s: "дж" }, { t: "a", s: "э", hi: true }, { t: "m", s: "м" }] },
+          { en: "kite", ru: "воздушный змей", ts: "кайт", ipa: "/kaɪt/", breakdown: [{ t: "k", s: "к" }, { t: "i", s: "ай", hi: true }, { t: "te", s: "т" }] },
+        ]
+      },
+      {
+        id: "0b", title: "Nn — Zz", titleRu: "Буквы N — Z",
+        phonics: [
+          { letters: "n", rus: "н", ipa: "/n/", rule: "Буква N читается как «н».", examples: ["no", "name", "nine"] },
+          { letters: "o", rus: "о", ipa: "/ɒ/", rule: "Буква O в закрытом слоге — короткое «о».", examples: ["on", "dog", "hot"] },
+          { letters: "p", rus: "п", ipa: "/p/", rule: "Буква P читается как «п».", examples: ["pen", "pig", "park"] },
+          { letters: "r", rus: "р (мягкое)", ipa: "/r/", rule: "Английское R мягче русского, язык не вибрирует.", examples: ["red", "run", "rain"] },
+          { letters: "s", rus: "с", ipa: "/s/", rule: "Буква S читается как «с».", examples: ["sun", "sit", "sing"] },
+          { letters: "t", rus: "т", ipa: "/t/", rule: "Буква T читается как «т».", examples: ["ten", "top", "tree"] },
+          { letters: "u", rus: "а", ipa: "/ʌ/", rule: "Буква U в закрытом слоге читается ближе к «а».", examples: ["up", "us", "bus"] },
+          { letters: "v", rus: "в", ipa: "/v/", rule: "Буква V читается как «в» (губы не смыкаются!).", examples: ["van", "very", "vet"] },
+          { letters: "w", rus: "у (быстрое)", ipa: "/w/", rule: "Буква W — быстрое «у», губы трубочкой.", examples: ["we", "wet", "win"] },
+          { letters: "x", rus: "кс", ipa: "/ks/", rule: "Буква X читается как «кс».", examples: ["box", "fox", "six"] },
+          { letters: "z", rus: "з", ipa: "/z/", rule: "Буква Z читается как «з».", examples: ["zoo", "zip", "zero"] },
+        ],
+        words: [
+          { en: "pen", ru: "ручка", ts: "пэн", ipa: "/pen/", breakdown: [{ t: "p", s: "п" }, { t: "e", s: "э", hi: true }, { t: "n", s: "н" }] },
+          { en: "red", ru: "красный", ts: "рэд", ipa: "/red/", breakdown: [{ t: "r", s: "р" }, { t: "e", s: "э", hi: true }, { t: "d", s: "д" }] },
+          { en: "sun", ru: "солнце", ts: "сан", ipa: "/sʌn/", breakdown: [{ t: "s", s: "с" }, { t: "u", s: "а", hi: true }, { t: "n", s: "н" }] },
+          { en: "ten", ru: "десять", ts: "тэн", ipa: "/ten/", breakdown: [{ t: "t", s: "т" }, { t: "e", s: "э", hi: true }, { t: "n", s: "н" }] },
+          { en: "box", ru: "коробка", ts: "бокс", ipa: "/bɒks/", breakdown: [{ t: "b", s: "б" }, { t: "o", s: "о", hi: true }, { t: "x", s: "кс" }] },
+          { en: "van", ru: "фургон", ts: "вэн", ipa: "/væn/", breakdown: [{ t: "v", s: "в" }, { t: "a", s: "э", hi: true }, { t: "n", s: "н" }] },
+          { en: "fox", ru: "лиса", ts: "фокс", ipa: "/fɒks/", breakdown: [{ t: "f", s: "ф" }, { t: "o", s: "о", hi: true }, { t: "x", s: "кс" }] },
+          { en: "zip", ru: "молния", ts: "зип", ipa: "/zɪp/", breakdown: [{ t: "z", s: "з" }, { t: "i", s: "и", hi: true }, { t: "p", s: "п" }] },
+        ]
+      },
+    ]
+  },
+  {
+    id: 1, title: "My Family!", titleRu: "Моя семья!", color: "#E8523F",
+    lessons: [
+      {
+        id: "1a", title: "This Is My Family", titleRu: "Это моя семья",
+        phonics: [
+          { letters: "th", rus: "з (язык между зубами)", ipa: "/ð/", rule: "TH — кончик языка между зубами, мягкий «з». Этого звука нет в русском!", examples: ["this", "that", "the", "brother"] },
+          { letters: "ee", rus: "ии (долгое)", ipa: "/iː/", rule: "Две буквы EE дают долгий звук «ии».", examples: ["tree", "see", "three"] },
+          { letters: "y (конец)", rus: "и", ipa: "/i/", rule: "Y в конце длинного слова = «и».", examples: ["mummy", "daddy", "baby", "family"] },
+          { letters: "a", rus: "э", ipa: "/æ/", rule: "A в закрытом слоге = «э».", examples: ["daddy", "grandma", "family"] },
+          { letters: "u", rus: "а", ipa: "/ʌ/", rule: "U в закрытом слоге = «а».", examples: ["mummy", "brother", "but"] },
+          { letters: "er", rus: "э (слабое)", ipa: "/ə/", rule: "Окончание -ER = слабое «э».", examples: ["sister", "brother", "water"] },
+        ],
+        words: [
+          { en: "mummy", ru: "мама", ts: "мами", ipa: "/ˈmʌmi/", breakdown: [{ t: "m", s: "м" }, { t: "u", s: "а", hi: true }, { t: "mm", s: "м" }, { t: "y", s: "и" }] },
+          { en: "daddy", ru: "папа", ts: "дэди", ipa: "/ˈdædi/", breakdown: [{ t: "d", s: "д" }, { t: "a", s: "э", hi: true }, { t: "dd", s: "д" }, { t: "y", s: "и" }] },
+          { en: "sister", ru: "сестра", ts: "систэ", ipa: "/ˈsɪstə/", breakdown: [{ t: "s", s: "с" }, { t: "i", s: "и", hi: true }, { t: "st", s: "ст" }, { t: "er", s: "э" }] },
+          { en: "brother", ru: "брат", ts: "бразэ", ipa: "/ˈbrʌðə/", breakdown: [{ t: "br", s: "бр" }, { t: "o", s: "а", hi: true }, { t: "th", s: "з*", hi: true }, { t: "er", s: "э" }] },
+          { en: "grandma", ru: "бабушка", ts: "грэндма", ipa: "/ˈɡrænmɑː/", breakdown: [{ t: "gr", s: "гр" }, { t: "a", s: "э", hi: true }, { t: "nd", s: "нд" }, { t: "ma", s: "ма" }] },
+          { en: "grandpa", ru: "дедушка", ts: "грэндпа", ipa: "/ˈɡrænpɑː/", breakdown: [{ t: "gr", s: "гр" }, { t: "a", s: "э", hi: true }, { t: "nd", s: "нд" }, { t: "pa", s: "па" }] },
+          { en: "family", ru: "семья", ts: "фэмили", ipa: "/ˈfæməli/", breakdown: [{ t: "f", s: "ф" }, { t: "a", s: "э", hi: true }, { t: "m", s: "м" }, { t: "i", s: "и" }, { t: "ly", s: "ли" }] },
+          { en: "baby", ru: "малыш", ts: "бэйби", ipa: "/ˈbeɪbi/", breakdown: [{ t: "b", s: "б" }, { t: "a", s: "эй", hi: true }, { t: "b", s: "б" }, { t: "y", s: "и" }] },
+        ]
+      },
+      {
+        id: "1b", title: "My House", titleRu: "Мой дом (комнаты)",
+        phonics: [
+          { letters: "oo", rus: "уу", ipa: "/uː/", rule: "OO = долгое «уу».", examples: ["room", "bathroom", "bedroom"] },
+          { letters: "ar", rus: "аа", ipa: "/ɑː/", rule: "AR = долгое «аа».", examples: ["garden", "car", "star"] },
+          { letters: "ou", rus: "ау", ipa: "/aʊ/", rule: "OU = «ау».", examples: ["house", "mouse", "out"] },
+          { letters: "tch", rus: "ч", ipa: "/tʃ/", rule: "TCH = «ч».", examples: ["kitchen", "catch", "watch"] },
+          { letters: "i", rus: "и", ipa: "/ɪ/", rule: "I в закрытом слоге = «и».", examples: ["living", "kitchen", "big"] },
+        ],
+        words: [
+          { en: "bedroom", ru: "спальня", ts: "бэдруум", ipa: "/ˈbedruːm/", breakdown: [{ t: "b", s: "б" }, { t: "e", s: "э", hi: true }, { t: "d", s: "д" }, { t: "r", s: "р" }, { t: "oo", s: "уу", hi: true }, { t: "m", s: "м" }] },
+          { en: "bathroom", ru: "ванная", ts: "баасруум", ipa: "/ˈbɑːθruːm/", breakdown: [{ t: "b", s: "б" }, { t: "a", s: "аа", hi: true }, { t: "th", s: "с*" }, { t: "r", s: "р" }, { t: "oo", s: "уу", hi: true }, { t: "m", s: "м" }] },
+          { en: "living room", ru: "гостиная", ts: "ливинг руум", ipa: "/ˈlɪvɪŋ ruːm/", breakdown: [{ t: "l", s: "л" }, { t: "i", s: "и", hi: true }, { t: "v", s: "в" }, { t: "ing", s: "инг" }, { t: " room", s: " руум" }] },
+          { en: "kitchen", ru: "кухня", ts: "кичин", ipa: "/ˈkɪtʃɪn/", breakdown: [{ t: "k", s: "к" }, { t: "i", s: "и", hi: true }, { t: "tch", s: "ч", hi: true }, { t: "en", s: "ин" }] },
+          { en: "garden", ru: "сад", ts: "гаадн", ipa: "/ˈɡɑːdn/", breakdown: [{ t: "g", s: "г" }, { t: "ar", s: "аа", hi: true }, { t: "d", s: "д" }, { t: "en", s: "н" }] },
+          { en: "house", ru: "дом", ts: "хаус", ipa: "/haʊs/", breakdown: [{ t: "h", s: "х" }, { t: "ou", s: "ау", hi: true }, { t: "se", s: "с" }] },
+        ]
+      },
+      {
+        id: "1c", title: "She's Happy!", titleRu: "Она счастлива!",
+        phonics: [
+          { letters: "sh", rus: "ш", ipa: "/ʃ/", rule: "SH вместе = «ш».", examples: ["she", "ship", "short", "shop"] },
+          { letters: "y (конец)", rus: "и", ipa: "/i/", rule: "Y в конце длинного слова = «и».", examples: ["happy", "funny", "baby"] },
+          { letters: "a", rus: "э", ipa: "/æ/", rule: "A в закрытом слоге = «э».", examples: ["happy", "sad", "hat"] },
+          { letters: "all", rus: "ол", ipa: "/ɔːl/", rule: "ALL = «ол».", examples: ["tall", "ball", "call", "small"] },
+          { letters: "ng", rus: "нг (носовое)", ipa: "/ŋ/", rule: "NG = носовой «нг».", examples: ["young", "sing", "ring"] },
+          { letters: "or", rus: "оо", ipa: "/ɔː/", rule: "OR = долгое «оо».", examples: ["short", "horse", "morning"] },
+        ],
+        words: [
+          { en: "happy", ru: "счастливый", ts: "хэпи", ipa: "/ˈhæpi/", breakdown: [{ t: "h", s: "х" }, { t: "a", s: "э", hi: true }, { t: "pp", s: "п" }, { t: "y", s: "и", hi: true }] },
+          { en: "sad", ru: "грустный", ts: "сэд", ipa: "/sæd/", breakdown: [{ t: "s", s: "с" }, { t: "a", s: "э", hi: true }, { t: "d", s: "д" }] },
+          { en: "funny", ru: "смешной", ts: "фани", ipa: "/ˈfʌni/", breakdown: [{ t: "f", s: "ф" }, { t: "u", s: "а", hi: true }, { t: "nn", s: "н" }, { t: "y", s: "и", hi: true }] },
+          { en: "tall", ru: "высокий", ts: "тол", ipa: "/tɔːl/", breakdown: [{ t: "t", s: "т" }, { t: "a", s: "о", hi: true }, { t: "ll", s: "л" }] },
+          { en: "short", ru: "низкий", ts: "шот", ipa: "/ʃɔːt/", breakdown: [{ t: "sh", s: "ш", hi: true }, { t: "or", s: "о" }, { t: "t", s: "т" }] },
+          { en: "young", ru: "молодой", ts: "янг", ipa: "/jʌŋ/", breakdown: [{ t: "y", s: "й" }, { t: "ou", s: "а", hi: true }, { t: "ng", s: "нг" }] },
+        ]
+      },
+    ]
+  },
+  {
+    id: 2, title: "My Birthday!", titleRu: "Мой день рождения!", color: "#8E24AA",
+    lessons: [
+      {
+        id: "2a", title: "How Old Are You?", titleRu: "Сколько тебе лет?",
+        phonics: [
+          { letters: "ow", rus: "ау", ipa: "/aʊ/", rule: "OW иногда = «ау».", examples: ["how", "cow", "now"] },
+          { letters: "ou", rus: "ау", ipa: "/aʊ/", rule: "OU тоже часто = «ау».", examples: ["house", "mouse", "out"] },
+          { letters: "i...e", rus: "ай", ipa: "/aɪ/", rule: "I + согласная + немая E = «ай» (волшебная E).", examples: ["five", "nine", "like"] },
+          { letters: "ee", rus: "ии", ipa: "/iː/", rule: "EE = долгое «ии».", examples: ["three", "see", "tree"] },
+          { letters: "th (глухой)", rus: "с* (язык между зубами)", ipa: "/θ/", rule: "TH глухой — язык между зубами, как «с», но с выдохом.", examples: ["three", "think", "thin"] },
+          { letters: "eigh", rus: "эй", ipa: "/eɪ/", rule: "EIGH = «эй».", examples: ["eight", "weight"] },
+        ],
+        words: [
+          { en: "one", ru: "один", ts: "уан", ipa: "/wʌn/", breakdown: [{ t: "o", s: "уа" }, { t: "ne", s: "н" }] },
+          { en: "two", ru: "два", ts: "туу", ipa: "/tuː/", breakdown: [{ t: "tw", s: "ту" }, { t: "o", s: "у", hi: true }] },
+          { en: "three", ru: "три", ts: "срии", ipa: "/θriː/", breakdown: [{ t: "th", s: "с*", hi: true }, { t: "r", s: "р" }, { t: "ee", s: "ии", hi: true }] },
+          { en: "four", ru: "четыре", ts: "фоо", ipa: "/fɔː/", breakdown: [{ t: "f", s: "ф" }, { t: "our", s: "оо", hi: true }] },
+          { en: "five", ru: "пять", ts: "файв", ipa: "/faɪv/", breakdown: [{ t: "f", s: "ф" }, { t: "i", s: "ай", hi: true }, { t: "ve", s: "в" }] },
+          { en: "six", ru: "шесть", ts: "сикс", ipa: "/sɪks/", breakdown: [{ t: "s", s: "с" }, { t: "i", s: "и", hi: true }, { t: "x", s: "кс" }] },
+          { en: "seven", ru: "семь", ts: "сэвн", ipa: "/ˈsevn/", breakdown: [{ t: "s", s: "с" }, { t: "e", s: "э", hi: true }, { t: "v", s: "в" }, { t: "en", s: "н" }] },
+          { en: "eight", ru: "восемь", ts: "эйт", ipa: "/eɪt/", breakdown: [{ t: "eigh", s: "эй", hi: true }, { t: "t", s: "т" }] },
+          { en: "nine", ru: "девять", ts: "найн", ipa: "/naɪn/", breakdown: [{ t: "n", s: "н" }, { t: "i", s: "ай", hi: true }, { t: "ne", s: "н" }] },
+          { en: "ten", ru: "десять", ts: "тэн", ipa: "/ten/", breakdown: [{ t: "t", s: "т" }, { t: "e", s: "э", hi: true }, { t: "n", s: "н" }] },
+        ]
+      },
+      {
+        id: "2b", title: "Yummy Cake!", titleRu: "Вкусный торт!",
+        phonics: [
+          { letters: "a...e", rus: "эй", ipa: "/eɪ/", rule: "A + согласная + немая E = «эй» (волшебная E).", examples: ["cake", "name", "game"] },
+          { letters: "ck", rus: "к", ipa: "/k/", rule: "CK вместе = один звук «к».", examples: ["black", "clock", "duck"] },
+          { letters: "ch", rus: "ч", ipa: "/tʃ/", rule: "CH = «ч».", examples: ["chocolate", "chair", "child"] },
+          { letters: "oo", rus: "уу", ipa: "/uː/", rule: "OO = долгое «уу».", examples: ["balloon", "moon", "school"] },
+          { letters: "ar", rus: "аа", ipa: "/ɑː/", rule: "AR = долгое «аа».", examples: ["party", "star", "car"] },
+        ],
+        words: [
+          { en: "cake", ru: "торт", ts: "кэйк", ipa: "/keɪk/", breakdown: [{ t: "c", s: "к" }, { t: "a", s: "эй", hi: true }, { t: "ke", s: "к" }] },
+          { en: "candle", ru: "свеча", ts: "кэндл", ipa: "/ˈkændl/", breakdown: [{ t: "c", s: "к" }, { t: "a", s: "э", hi: true }, { t: "nd", s: "нд" }, { t: "le", s: "л" }] },
+          { en: "present", ru: "подарок", ts: "прэзнт", ipa: "/ˈprezənt/", breakdown: [{ t: "pr", s: "пр" }, { t: "e", s: "э", hi: true }, { t: "s", s: "з" }, { t: "ent", s: "энт" }] },
+          { en: "party", ru: "вечеринка", ts: "паати", ipa: "/ˈpɑːti/", breakdown: [{ t: "p", s: "п" }, { t: "ar", s: "аа", hi: true }, { t: "t", s: "т" }, { t: "y", s: "и" }] },
+          { en: "balloon", ru: "воздушный шарик", ts: "бэлуун", ipa: "/bəˈluːn/", breakdown: [{ t: "b", s: "б" }, { t: "a", s: "э" }, { t: "ll", s: "л" }, { t: "oo", s: "уу", hi: true }, { t: "n", s: "н" }] },
+          { en: "chocolate", ru: "шоколад", ts: "чоклит", ipa: "/ˈtʃɒklɪt/", breakdown: [{ t: "ch", s: "ч", hi: true }, { t: "o", s: "о" }, { t: "c", s: "к" }, { t: "late", s: "лит" }] },
+        ]
+      },
+      {
+        id: "2c", title: "Shapes & Colours", titleRu: "Фигуры и цвета",
+        phonics: [
+          { letters: "qu", rus: "ку", ipa: "/kw/", rule: "QU = «ку» (быстро, вместе).", examples: ["queen", "square", "quick"] },
+          { letters: "ir", rus: "ё", ipa: "/ɜː/", rule: "IR = звук «ё».", examples: ["circle", "bird", "girl"] },
+          { letters: "ee", rus: "ии", ipa: "/iː/", rule: "EE = долгое «ии».", examples: ["green", "tree", "three"] },
+          { letters: "ow", rus: "оу", ipa: "/əʊ/", rule: "OW иногда = «оу».", examples: ["yellow", "snow", "slow"] },
+          { letters: "ue", rus: "уу", ipa: "/uː/", rule: "UE = «уу».", examples: ["blue", "true", "glue"] },
+          { letters: "a", rus: "э", ipa: "/æ/", rule: "A в закрытом слоге = «э».", examples: ["black", "cat", "hat"] },
+        ],
+        words: [
+          { en: "circle", ru: "круг", ts: "сёкл", ipa: "/ˈsɜːkl/", breakdown: [{ t: "c", s: "с" }, { t: "ir", s: "ё", hi: true }, { t: "cle", s: "кл" }] },
+          { en: "square", ru: "квадрат", ts: "скуэа", ipa: "/skweə/", breakdown: [{ t: "sq", s: "ску" }, { t: "are", s: "эа", hi: true }] },
+          { en: "triangle", ru: "треугольник", ts: "трайэнгл", ipa: "/ˈtraɪæŋɡl/", breakdown: [{ t: "tr", s: "тр" }, { t: "i", s: "ай", hi: true }, { t: "a", s: "э" }, { t: "ngle", s: "нгл" }] },
+          { en: "star", ru: "звезда", ts: "стаа", ipa: "/stɑː/", breakdown: [{ t: "st", s: "ст" }, { t: "ar", s: "аа", hi: true }] },
+          { en: "red", ru: "красный", ts: "рэд", ipa: "/red/", breakdown: [{ t: "r", s: "р" }, { t: "e", s: "э", hi: true }, { t: "d", s: "д" }] },
+          { en: "blue", ru: "синий", ts: "блуу", ipa: "/bluː/", breakdown: [{ t: "bl", s: "бл" }, { t: "ue", s: "уу", hi: true }] },
+          { en: "green", ru: "зелёный", ts: "гриин", ipa: "/ɡriːn/", breakdown: [{ t: "gr", s: "гр" }, { t: "ee", s: "ии", hi: true }, { t: "n", s: "н" }] },
+          { en: "yellow", ru: "жёлтый", ts: "йэлоу", ipa: "/ˈjeləʊ/", breakdown: [{ t: "y", s: "й" }, { t: "e", s: "э", hi: true }, { t: "ll", s: "л" }, { t: "ow", s: "оу" }] },
+          { en: "pink", ru: "розовый", ts: "пинк", ipa: "/pɪŋk/", breakdown: [{ t: "p", s: "п" }, { t: "i", s: "и", hi: true }, { t: "nk", s: "нк" }] },
+          { en: "black", ru: "чёрный", ts: "блэк", ipa: "/blæk/", breakdown: [{ t: "bl", s: "бл" }, { t: "a", s: "э", hi: true }, { t: "ck", s: "к" }] },
+        ]
+      },
+      {
+        id: "2d", title: "In, On, Under", titleRu: "В, на, под",
+        phonics: [
+          { letters: "u", rus: "а", ipa: "/ʌ/", rule: "U в закрытом слоге = «а».", examples: ["under", "up", "fun", "cup"] },
+          { letters: "wh", rus: "у", ipa: "/w/", rule: "WH = «у» (h молчит).", examples: ["where", "what", "when", "white"] },
+          { letters: "a...e", rus: "эй", ipa: "/eɪ/", rule: "A + согласная + E = «эй».", examples: ["table", "name", "cake"] },
+          { letters: "air", rus: "эа", ipa: "/eə/", rule: "AIR = «эа».", examples: ["chair", "hair", "fair"] },
+          { letters: "o", rus: "о", ipa: "/ɒ/", rule: "O в закрытом слоге = «о».", examples: ["on", "box", "dog"] },
+        ],
+        words: [
+          { en: "in", ru: "в (внутри)", ts: "ин", ipa: "/ɪn/", breakdown: [{ t: "i", s: "и", hi: true }, { t: "n", s: "н" }] },
+          { en: "on", ru: "на", ts: "он", ipa: "/ɒn/", breakdown: [{ t: "o", s: "о", hi: true }, { t: "n", s: "н" }] },
+          { en: "under", ru: "под", ts: "андэ", ipa: "/ˈʌndə/", breakdown: [{ t: "u", s: "а", hi: true }, { t: "nd", s: "нд" }, { t: "er", s: "э" }] },
+          { en: "where", ru: "где", ts: "уэа", ipa: "/weə/", breakdown: [{ t: "wh", s: "у", hi: true }, { t: "ere", s: "эа" }] },
+          { en: "table", ru: "стол", ts: "тэйбл", ipa: "/ˈteɪbl/", breakdown: [{ t: "t", s: "т" }, { t: "a", s: "эй", hi: true }, { t: "ble", s: "бл" }] },
+          { en: "chair", ru: "стул", ts: "чэа", ipa: "/tʃeə/", breakdown: [{ t: "ch", s: "ч", hi: true }, { t: "air", s: "эа" }] },
+          { en: "bed", ru: "кровать", ts: "бэд", ipa: "/bed/", breakdown: [{ t: "b", s: "б" }, { t: "e", s: "э", hi: true }, { t: "d", s: "д" }] },
+          { en: "box", ru: "коробка", ts: "бокс", ipa: "/bɒks/", breakdown: [{ t: "b", s: "б" }, { t: "o", s: "о", hi: true }, { t: "x", s: "кс" }] },
+        ]
+      },
+      {
+        id: "2e", title: "My Toys", titleRu: "Мои игрушки",
+        phonics: [
+          { letters: "o...e", rus: "оу", ipa: "/əʊ/", rule: "O + согласная + немая E = «оу».", examples: ["home", "bone", "nose"] },
+          { letters: "oo", rus: "уу", ipa: "/uː/", rule: "OO = долгое «уу».", examples: ["school", "cool", "room"] },
+          { letters: "u...e", rus: "юу", ipa: "/juː/", rule: "U + согласная + немая E = «юу».", examples: ["cute", "computer", "use"] },
+          { letters: "o", rus: "о", ipa: "/ɒ/", rule: "O в закрытом слоге = «о».", examples: ["robot", "doll", "dog"] },
+          { letters: "all", rus: "ол", ipa: "/ɔːl/", rule: "ALL = «ол».", examples: ["ball", "tall", "call"] },
+        ],
+        words: [
+          { en: "robot", ru: "робот", ts: "роубот", ipa: "/ˈrəʊbɒt/", breakdown: [{ t: "r", s: "р" }, { t: "o", s: "оу", hi: true }, { t: "b", s: "б" }, { t: "o", s: "о" }, { t: "t", s: "т" }] },
+          { en: "ball", ru: "мяч", ts: "бол", ipa: "/bɔːl/", breakdown: [{ t: "b", s: "б" }, { t: "a", s: "о", hi: true }, { t: "ll", s: "л" }] },
+          { en: "doll", ru: "кукла", ts: "дол", ipa: "/dɒl/", breakdown: [{ t: "d", s: "д" }, { t: "o", s: "о", hi: true }, { t: "ll", s: "л" }] },
+          { en: "teddy bear", ru: "плюшевый мишка", ts: "тэди бэа", ipa: "/ˈtedi beə/", breakdown: [{ t: "te", s: "тэ" }, { t: "ddy", s: "ди" }, { t: " bear", s: " бэа" }] },
+          { en: "puppet", ru: "кукла-марионетка", ts: "папит", ipa: "/ˈpʌpɪt/", breakdown: [{ t: "p", s: "п" }, { t: "u", s: "а", hi: true }, { t: "pp", s: "п" }, { t: "et", s: "ит" }] },
+          { en: "computer", ru: "компьютер", ts: "кэмпьютэ", ipa: "/kəmˈpjuːtə/", breakdown: [{ t: "c", s: "к" }, { t: "o", s: "э" }, { t: "m", s: "м" }, { t: "p", s: "пь" }, { t: "u", s: "юу", hi: true }, { t: "ter", s: "тэ" }] },
+          { en: "TV", ru: "телевизор", ts: "тии вии", ipa: "/ˌtiːˈviː/", breakdown: [{ t: "T", s: "тии", hi: true }, { t: "V", s: "вии", hi: true }] },
+        ]
+      },
+    ]
+  },
+  {
+    id: 3, title: "My Body!", titleRu: "Моё тело!", color: "#00897B",
+    lessons: [
+      {
+        id: "3a", title: "Head & Body", titleRu: "Голова и тело",
+        phonics: [
+          { letters: "ea", rus: "ии", ipa: "/iː/", rule: "EA = долгое «ии».", examples: ["eat", "read", "ear"] },
+          { letters: "ar", rus: "аа (долгое)", ipa: "/ɑː/", rule: "AR = долгое «аа».", examples: ["arm", "star", "car"] },
+          { letters: "ou", rus: "ау", ipa: "/aʊ/", rule: "OU = «ау».", examples: ["mouth", "house", "out"] },
+          { letters: "air", rus: "эа", ipa: "/eə/", rule: "AIR = «эа».", examples: ["hair", "fair", "chair"] },
+          { letters: "o...e", rus: "оу", ipa: "/əʊ/", rule: "O + согласная + E = «оу».", examples: ["nose", "home", "bone"] },
+          { letters: "eye", rus: "ай", ipa: "/aɪ/", rule: "Слово eye (глаз) = «ай» целиком.", examples: ["eye"] },
+        ],
+        words: [
+          { en: "head", ru: "голова", ts: "хэд", ipa: "/hed/", breakdown: [{ t: "h", s: "х" }, { t: "ea", s: "э", hi: true }, { t: "d", s: "д" }] },
+          { en: "arm", ru: "рука (от плеча)", ts: "аам", ipa: "/ɑːm/", breakdown: [{ t: "ar", s: "аа", hi: true }, { t: "m", s: "м" }] },
+          { en: "hand", ru: "кисть руки", ts: "хэнд", ipa: "/hænd/", breakdown: [{ t: "h", s: "х" }, { t: "a", s: "э", hi: true }, { t: "nd", s: "нд" }] },
+          { en: "leg", ru: "нога", ts: "лэг", ipa: "/leɡ/", breakdown: [{ t: "l", s: "л" }, { t: "e", s: "э", hi: true }, { t: "g", s: "г" }] },
+          { en: "foot", ru: "ступня", ts: "фут", ipa: "/fʊt/", breakdown: [{ t: "f", s: "ф" }, { t: "oo", s: "у", hi: true }, { t: "t", s: "т" }] },
+          { en: "body", ru: "тело", ts: "боди", ipa: "/ˈbɒdi/", breakdown: [{ t: "b", s: "б" }, { t: "o", s: "о", hi: true }, { t: "d", s: "д" }, { t: "y", s: "и" }] },
+          { en: "nose", ru: "нос", ts: "ноуз", ipa: "/nəʊz/", breakdown: [{ t: "n", s: "н" }, { t: "o", s: "оу", hi: true }, { t: "se", s: "з" }] },
+          { en: "eye", ru: "глаз", ts: "ай", ipa: "/aɪ/", breakdown: [{ t: "eye", s: "ай", hi: true }] },
+          { en: "ear", ru: "ухо", ts: "иэ", ipa: "/ɪər/", breakdown: [{ t: "ear", s: "иэ", hi: true }] },
+          { en: "mouth", ru: "рот", ts: "маус", ipa: "/maʊθ/", breakdown: [{ t: "m", s: "м" }, { t: "ou", s: "ау", hi: true }, { t: "th", s: "с*" }] },
+          { en: "tummy", ru: "животик", ts: "тами", ipa: "/ˈtʌmi/", breakdown: [{ t: "t", s: "т" }, { t: "u", s: "а", hi: true }, { t: "mm", s: "м" }, { t: "y", s: "и" }] },
+          { en: "hair", ru: "волосы", ts: "хэа", ipa: "/heə/", breakdown: [{ t: "h", s: "х" }, { t: "air", s: "эа", hi: true }] },
+        ]
+      },
+      {
+        id: "3b", title: "I Can Move!", titleRu: "Я могу двигаться!",
+        phonics: [
+          { letters: "o...e", rus: "оу", ipa: "/əʊ/", rule: "O + согласная + E = «оу».", examples: ["nose", "home", "bone"] },
+          { letters: "ch", rus: "ч", ipa: "/tʃ/", rule: "CH = «ч».", examples: ["touch", "chin", "child"] },
+          { letters: "a...e", rus: "эй", ipa: "/eɪ/", rule: "A + согласная + E = «эй».", examples: ["wave", "shake", "name"] },
+          { letters: "oi", rus: "ой", ipa: "/ɔɪ/", rule: "OI = «ой».", examples: ["point", "boy", "toy"] },
+          { letters: "sh", rus: "ш", ipa: "/ʃ/", rule: "SH = «ш».", examples: ["shake", "she", "shop"] },
+        ],
+        words: [
+          { en: "clap", ru: "хлопать", ts: "клэп", ipa: "/klæp/", breakdown: [{ t: "cl", s: "кл" }, { t: "a", s: "э", hi: true }, { t: "p", s: "п" }] },
+          { en: "stamp", ru: "топать", ts: "стэмп", ipa: "/stæmp/", breakdown: [{ t: "st", s: "ст" }, { t: "a", s: "э", hi: true }, { t: "mp", s: "мп" }] },
+          { en: "touch", ru: "трогать", ts: "тач", ipa: "/tʌtʃ/", breakdown: [{ t: "t", s: "т" }, { t: "ou", s: "а", hi: true }, { t: "ch", s: "ч", hi: true }] },
+          { en: "wave", ru: "махать", ts: "уэйв", ipa: "/weɪv/", breakdown: [{ t: "w", s: "у" }, { t: "a", s: "эй", hi: true }, { t: "ve", s: "в" }] },
+          { en: "point", ru: "показывать", ts: "пойнт", ipa: "/pɔɪnt/", breakdown: [{ t: "p", s: "п" }, { t: "oi", s: "ой", hi: true }, { t: "nt", s: "нт" }] },
+          { en: "shake", ru: "трясти", ts: "шэйк", ipa: "/ʃeɪk/", breakdown: [{ t: "sh", s: "ш", hi: true }, { t: "a", s: "эй", hi: true }, { t: "ke", s: "к" }] },
+        ]
+      },
+      {
+        id: "3c", title: "I've Got...", titleRu: "У меня есть...",
+        phonics: [
+          { letters: "air", rus: "эа", ipa: "/eə/", rule: "AIR = «эа».", examples: ["hair", "fair", "chair"] },
+          { letters: "oo (кор.)", rus: "у", ipa: "/ʊ/", rule: "OO иногда = короткое «у».", examples: ["good", "foot", "look"] },
+          { letters: "all", rus: "ол", ipa: "/ɔːl/", rule: "ALL = «ол».", examples: ["small", "tall", "ball"] },
+          { letters: "ar", rus: "аа", ipa: "/ɑː/", rule: "AR = «аа».", examples: ["dark", "star", "car"] },
+          { letters: "ue", rus: "уу", ipa: "/uː/", rule: "UE = «уу».", examples: ["blue", "true", "glue"] },
+        ],
+        words: [
+          { en: "big", ru: "большой", ts: "биг", ipa: "/bɪɡ/", breakdown: [{ t: "b", s: "б" }, { t: "i", s: "и", hi: true }, { t: "g", s: "г" }] },
+          { en: "small", ru: "маленький", ts: "смол", ipa: "/smɔːl/", breakdown: [{ t: "sm", s: "см" }, { t: "a", s: "о", hi: true }, { t: "ll", s: "л" }] },
+          { en: "fair", ru: "светлый (о волосах)", ts: "фэа", ipa: "/feə/", breakdown: [{ t: "f", s: "ф" }, { t: "air", s: "эа", hi: true }] },
+          { en: "dark", ru: "тёмный", ts: "даак", ipa: "/dɑːk/", breakdown: [{ t: "d", s: "д" }, { t: "ar", s: "аа", hi: true }, { t: "k", s: "к" }] },
+          { en: "long", ru: "длинный", ts: "лонг", ipa: "/lɒŋ/", breakdown: [{ t: "l", s: "л" }, { t: "o", s: "о", hi: true }, { t: "ng", s: "нг" }] },
+          { en: "blue", ru: "голубой", ts: "блуу", ipa: "/bluː/", breakdown: [{ t: "bl", s: "бл" }, { t: "ue", s: "уу", hi: true }] },
+        ]
+      },
+    ]
+  },
+  {
+    id: 4, title: "I Can Sing!", titleRu: "Я умею петь!", color: "#F4A100",
+    lessons: [
+      {
+        id: "4a", title: "I Can...", titleRu: "Я умею...",
+        phonics: [
+          { letters: "ng", rus: "нг (носовое)", ipa: "/ŋ/", rule: "NG = носовой звук «нг».", examples: ["sing", "ring", "king"] },
+          { letters: "all", rus: "ол", ipa: "/ɔːl/", rule: "ALL = «ол».", examples: ["ball", "tall", "call"] },
+          { letters: "aw", rus: "оо", ipa: "/ɔː/", rule: "AW = «оо».", examples: ["draw", "paw", "saw"] },
+          { letters: "ea", rus: "ии", ipa: "/iː/", rule: "EA = долгое «ии».", examples: ["read", "eat", "sea"] },
+          { letters: "u", rus: "а", ipa: "/ʌ/", rule: "U в закрытом слоге = «а».", examples: ["run", "jump", "fun"] },
+          { letters: "y (конец)", rus: "ай", ipa: "/aɪ/", rule: "Y на конце короткого слова = «ай».", examples: ["fly", "my", "by"] },
+        ],
+        words: [
+          { en: "sing", ru: "петь", ts: "синг", ipa: "/sɪŋ/", breakdown: [{ t: "s", s: "с" }, { t: "i", s: "и", hi: true }, { t: "ng", s: "нг", hi: true }] },
+          { en: "dance", ru: "танцевать", ts: "даанс", ipa: "/dɑːns/", breakdown: [{ t: "d", s: "д" }, { t: "a", s: "а", hi: true }, { t: "nce", s: "нс" }] },
+          { en: "swim", ru: "плавать", ts: "суим", ipa: "/swɪm/", breakdown: [{ t: "sw", s: "су" }, { t: "i", s: "и", hi: true }, { t: "m", s: "м" }] },
+          { en: "run", ru: "бегать", ts: "ран", ipa: "/rʌn/", breakdown: [{ t: "r", s: "р" }, { t: "u", s: "а", hi: true }, { t: "n", s: "н" }] },
+          { en: "jump", ru: "прыгать", ts: "джамп", ipa: "/dʒʌmp/", breakdown: [{ t: "j", s: "дж" }, { t: "u", s: "а", hi: true }, { t: "mp", s: "мп" }] },
+          { en: "fly", ru: "летать", ts: "флай", ipa: "/flaɪ/", breakdown: [{ t: "fl", s: "фл" }, { t: "y", s: "ай", hi: true }] },
+          { en: "draw", ru: "рисовать", ts: "дроо", ipa: "/drɔː/", breakdown: [{ t: "dr", s: "др" }, { t: "aw", s: "оо", hi: true }] },
+          { en: "read", ru: "читать", ts: "риид", ipa: "/riːd/", breakdown: [{ t: "r", s: "р" }, { t: "ea", s: "ии", hi: true }, { t: "d", s: "д" }] },
+        ]
+      },
+      {
+        id: "4b", title: "Musical Instruments", titleRu: "Музыкальные инструменты",
+        phonics: [
+          { letters: "oo", rus: "уу", ipa: "/uː/", rule: "OO = долгое «уу».", examples: ["flute", "school", "cool"] },
+          { letters: "i...e", rus: "ай", ipa: "/aɪ/", rule: "I + согласная + немая E = «ай».", examples: ["like", "five", "ride"] },
+          { letters: "ar", rus: "аа", ipa: "/ɑː/", rule: "AR = долгое «аа».", examples: ["guitar", "star", "car"] },
+          { letters: "u", rus: "а", ipa: "/ʌ/", rule: "U в закрытом слоге = «а».", examples: ["drum", "fun", "run"] },
+          { letters: "i + a", rus: "ай-э", ipa: "/aɪə/", rule: "I перед гласной может = «ай».", examples: ["piano", "violin"] },
+        ],
+        words: [
+          { en: "piano", ru: "пианино", ts: "пианоу", ipa: "/piˈænəʊ/", breakdown: [{ t: "p", s: "п" }, { t: "i", s: "и" }, { t: "a", s: "э" }, { t: "n", s: "н" }, { t: "o", s: "оу", hi: true }] },
+          { en: "guitar", ru: "гитара", ts: "гитаа", ipa: "/ɡɪˈtɑː/", breakdown: [{ t: "g", s: "г" }, { t: "u", s: "и" }, { t: "t", s: "т" }, { t: "ar", s: "аа", hi: true }] },
+          { en: "drum", ru: "барабан", ts: "драм", ipa: "/drʌm/", breakdown: [{ t: "dr", s: "др" }, { t: "u", s: "а", hi: true }, { t: "m", s: "м" }] },
+          { en: "flute", ru: "флейта", ts: "флуут", ipa: "/fluːt/", breakdown: [{ t: "fl", s: "фл" }, { t: "u", s: "уу", hi: true }, { t: "te", s: "т" }] },
+          { en: "violin", ru: "скрипка", ts: "вайэлин", ipa: "/ˌvaɪəˈlɪn/", breakdown: [{ t: "v", s: "в" }, { t: "i", s: "ай", hi: true }, { t: "o", s: "э" }, { t: "l", s: "л" }, { t: "in", s: "ин" }] },
+          { en: "like", ru: "нравиться", ts: "лайк", ipa: "/laɪk/", breakdown: [{ t: "l", s: "л" }, { t: "i", s: "ай", hi: true }, { t: "ke", s: "к" }] },
+        ]
+      },
+    ]
+  },
+
+  // ==================== PART 2 ====================
+
+  {
+    id: 5, title: "A Butterfly!", titleRu: "Бабочка!", color: "#D95D39",
+    lessons: [
+      {
+        id: "5a", title: "Animals", titleRu: "Животные",
+        phonics: [
+          { letters: "er", rus: "э (слабое)", ipa: "/ə/", rule: "Окончание -ER = слабое «э».", examples: ["spider", "tiger", "water"] },
+          { letters: "oy", rus: "ой", ipa: "/ɔɪ/", rule: "OY = «ой».", examples: ["toy", "boy", "joy"] },
+          { letters: "ir", rus: "ё", ipa: "/ɜː/", rule: "IR = звук «ё».", examples: ["bird", "girl", "first"] },
+          { letters: "ey", rus: "и", ipa: "/i/", rule: "EY в конце = «и».", examples: ["monkey", "donkey", "key"] },
+          { letters: "ph", rus: "ф", ipa: "/f/", rule: "PH = «ф».", examples: ["elephant", "phone", "photo"] },
+          { letters: "u", rus: "а", ipa: "/ʌ/", rule: "U в закрытом слоге = «а».", examples: ["butterfly", "fun", "run"] },
+        ],
+        words: [
+          { en: "butterfly", ru: "бабочка", ts: "батэфлай", ipa: "/ˈbʌtəflaɪ/", breakdown: [{ t: "b", s: "б" }, { t: "u", s: "а", hi: true }, { t: "tt", s: "т" }, { t: "er", s: "э" }, { t: "fl", s: "фл" }, { t: "y", s: "ай", hi: true }] },
+          { en: "elephant", ru: "слон", ts: "элифэнт", ipa: "/ˈelɪfənt/", breakdown: [{ t: "e", s: "э", hi: true }, { t: "l", s: "л" }, { t: "e", s: "и" }, { t: "ph", s: "ф" }, { t: "ant", s: "энт" }] },
+          { en: "spider", ru: "паук", ts: "спайдэ", ipa: "/ˈspaɪdə/", breakdown: [{ t: "sp", s: "сп" }, { t: "i", s: "ай", hi: true }, { t: "d", s: "д" }, { t: "er", s: "э", hi: true }] },
+          { en: "bird", ru: "птица", ts: "бёд", ipa: "/bɜːd/", breakdown: [{ t: "b", s: "б" }, { t: "ir", s: "ё", hi: true }, { t: "d", s: "д" }] },
+          { en: "frog", ru: "лягушка", ts: "фрог", ipa: "/frɒɡ/", breakdown: [{ t: "fr", s: "фр" }, { t: "o", s: "о", hi: true }, { t: "g", s: "г" }] },
+          { en: "monkey", ru: "обезьяна", ts: "манки", ipa: "/ˈmʌŋki/", breakdown: [{ t: "m", s: "м" }, { t: "o", s: "а", hi: true }, { t: "n", s: "н" }, { t: "k", s: "к" }, { t: "ey", s: "и" }] },
+        ]
+      },
+      {
+        id: "5b", title: "Numbers 11-20", titleRu: "Числа 11-20",
+        phonics: [
+          { letters: "ir", rus: "ё", ipa: "/ɜː/", rule: "IR = звук «ё».", examples: ["bird", "girl", "thirteen"] },
+          { letters: "teen", rus: "тиин", ipa: "/tiːn/", rule: "Суффикс -TEEN = «тиин» (ударный).", examples: ["thirteen", "fourteen", "fifteen"] },
+          { letters: "ee", rus: "ии", ipa: "/iː/", rule: "EE = долгое «ии».", examples: ["fifteen", "three", "see"] },
+          { letters: "eigh", rus: "эй", ipa: "/eɪ/", rule: "EIGH = «эй».", examples: ["eight", "eighteen"] },
+          { letters: "i...e", rus: "ай", ipa: "/aɪ/", rule: "I + согласная + E = «ай».", examples: ["five", "nine", "nineteen"] },
+          { letters: "th (глухой)", rus: "с*", ipa: "/θ/", rule: "TH глухой = «с*» (язык между зубами).", examples: ["three", "thirteen", "think"] },
+        ],
+        words: [
+          { en: "eleven", ru: "одиннадцать", ts: "илэвн", ipa: "/ɪˈlevn/", breakdown: [{ t: "e", s: "и" }, { t: "le", s: "лэ", hi: true }, { t: "ven", s: "вн" }] },
+          { en: "twelve", ru: "двенадцать", ts: "туэлв", ipa: "/twelv/", breakdown: [{ t: "tw", s: "ту" }, { t: "e", s: "э", hi: true }, { t: "lve", s: "лв" }] },
+          { en: "thirteen", ru: "тринадцать", ts: "сётиин", ipa: "/θɜːˈtiːn/", breakdown: [{ t: "th", s: "с*", hi: true }, { t: "ir", s: "ё", hi: true }, { t: "teen", s: "тиин" }] },
+          { en: "fourteen", ru: "четырнадцать", ts: "фоотиин", ipa: "/fɔːˈtiːn/", breakdown: [{ t: "f", s: "ф" }, { t: "our", s: "оо", hi: true }, { t: "teen", s: "тиин" }] },
+          { en: "fifteen", ru: "пятнадцать", ts: "фифтиин", ipa: "/fɪfˈtiːn/", breakdown: [{ t: "f", s: "ф" }, { t: "i", s: "и", hi: true }, { t: "f", s: "ф" }, { t: "teen", s: "тиин" }] },
+          { en: "sixteen", ru: "шестнадцать", ts: "сикстиин", ipa: "/sɪksˈtiːn/", breakdown: [{ t: "s", s: "с" }, { t: "i", s: "и", hi: true }, { t: "x", s: "кс" }, { t: "teen", s: "тиин" }] },
+          { en: "seventeen", ru: "семнадцать", ts: "сэвнтиин", ipa: "/sevnˈtiːn/", breakdown: [{ t: "s", s: "с" }, { t: "e", s: "э", hi: true }, { t: "ven", s: "вн" }, { t: "teen", s: "тиин" }] },
+          { en: "eighteen", ru: "восемнадцать", ts: "эйтиин", ipa: "/eɪˈtiːn/", breakdown: [{ t: "eigh", s: "эй", hi: true }, { t: "teen", s: "тиин" }] },
+          { en: "nineteen", ru: "девятнадцать", ts: "найнтиин", ipa: "/naɪnˈtiːn/", breakdown: [{ t: "n", s: "н" }, { t: "i", s: "ай", hi: true }, { t: "ne", s: "н" }, { t: "teen", s: "тиин" }] },
+          { en: "twenty", ru: "двадцать", ts: "туэнти", ipa: "/ˈtwenti/", breakdown: [{ t: "tw", s: "ту" }, { t: "e", s: "э", hi: true }, { t: "n", s: "н" }, { t: "ty", s: "ти" }] },
+        ]
+      },
+      {
+        id: "5c", title: "Butterfly Life Cycle", titleRu: "Жизнь бабочки",
+        phonics: [
+          { letters: "or", rus: "оо (долгое)", ipa: "/ɔː/", rule: "OR = долгое «оо».", examples: ["horse", "short", "morning"] },
+          { letters: "a...e", rus: "эй", ipa: "/eɪ/", rule: "A + согласная + немая E = «эй».", examples: ["cake", "name", "make"] },
+          { letters: "ee", rus: "ии", ipa: "/iː/", rule: "EE = долгое «ии».", examples: ["sleep", "tree", "see"] },
+          { letters: "ea", rus: "ии", ipa: "/iː/", rule: "EA = долгое «ии».", examples: ["eat", "read", "sea"] },
+          { letters: "all", rus: "ол", ipa: "/ɔːl/", rule: "ALL = «ол».", examples: ["small", "tall", "ball"] },
+          { letters: "y (конец)", rus: "ай", ipa: "/aɪ/", rule: "Y на конце короткого слова = «ай».", examples: ["fly", "my", "by"] },
+        ],
+        words: [
+          { en: "egg", ru: "яйцо", ts: "эг", ipa: "/eɡ/", breakdown: [{ t: "e", s: "э", hi: true }, { t: "gg", s: "г" }] },
+          { en: "caterpillar", ru: "гусеница", ts: "кэтэпилэ", ipa: "/ˈkætəpɪlə/", breakdown: [{ t: "c", s: "к" }, { t: "a", s: "э", hi: true }, { t: "t", s: "т" }, { t: "er", s: "э" }, { t: "pi", s: "пи" }, { t: "ll", s: "л" }, { t: "ar", s: "э" }] },
+          { en: "chrysalis", ru: "куколка", ts: "крисэлис", ipa: "/ˈkrɪsəlɪs/", breakdown: [{ t: "ch", s: "кр" }, { t: "y", s: "и", hi: true }, { t: "sa", s: "сэ" }, { t: "lis", s: "лис" }] },
+          { en: "sleep", ru: "спать", ts: "слиип", ipa: "/sliːp/", breakdown: [{ t: "sl", s: "сл" }, { t: "ee", s: "ии", hi: true }, { t: "p", s: "п" }] },
+          { en: "eat", ru: "есть", ts: "иит", ipa: "/iːt/", breakdown: [{ t: "ea", s: "ии", hi: true }, { t: "t", s: "т" }] },
+          { en: "small", ru: "маленький", ts: "смол", ipa: "/smɔːl/", breakdown: [{ t: "sm", s: "см" }, { t: "a", s: "о", hi: true }, { t: "ll", s: "л" }] },
+          { en: "fast", ru: "быстрый", ts: "фааст", ipa: "/fɑːst/", breakdown: [{ t: "f", s: "ф" }, { t: "a", s: "аа", hi: true }, { t: "st", s: "ст" }] },
+          { en: "fly", ru: "летать", ts: "флай", ipa: "/flaɪ/", breakdown: [{ t: "fl", s: "фл" }, { t: "y", s: "ай", hi: true }] },
+        ]
+      },
+      {
+        id: "5d", title: "Plurals", titleRu: "Множественное число",
+        phonics: [
+          { letters: "-s", rus: "з / с", ipa: "/z/ или /s/", rule: "Окончание -S: после звонких = «з», после глухих = «с».", examples: ["spiders", "cakes", "caps"] },
+          { letters: "-es", rus: "из", ipa: "/ɪz/", rule: "Окончание -ES после s, sh, ch, x = «из».", examples: ["glasses", "sandwiches", "boxes"] },
+          { letters: "-ies", rus: "из", ipa: "/iz/", rule: "Слова на -y (после согл.) → -IES.", examples: ["cherries", "butterflies", "puppies"] },
+          { letters: "ee", rus: "ии", ipa: "/iː/", rule: "EE = долгое «ии».", examples: ["teeth", "feet", "see"] },
+          { letters: "ey", rus: "и", ipa: "/i/", rule: "EY = «и» на конце.", examples: ["monkeys", "donkeys"] },
+        ],
+        words: [
+          { en: "spiders", ru: "пауки", ts: "спайдэз", ipa: "/ˈspaɪdəz/", breakdown: [{ t: "spider", s: "спайдэ" }, { t: "s", s: "з", hi: true }] },
+          { en: "glasses", ru: "стаканы", ts: "глаасиз", ipa: "/ˈɡlɑːsɪz/", breakdown: [{ t: "glass", s: "глаас" }, { t: "es", s: "из", hi: true }] },
+          { en: "sandwiches", ru: "бутерброды", ts: "сэндуичиз", ipa: "/ˈsænwɪdʒɪz/", breakdown: [{ t: "sandwich", s: "сэндуич" }, { t: "es", s: "из", hi: true }] },
+          { en: "cherries", ru: "вишни", ts: "чэриз", ipa: "/ˈtʃeriz/", breakdown: [{ t: "cherr", s: "чэр" }, { t: "ies", s: "из", hi: true }] },
+          { en: "butterflies", ru: "бабочки", ts: "батэфлайз", ipa: "/ˈbʌtəflaɪz/", breakdown: [{ t: "butterfl", s: "батэфл" }, { t: "ies", s: "айз", hi: true }] },
+          { en: "teeth", ru: "зубы", ts: "тиис", ipa: "/tiːθ/", breakdown: [{ t: "t", s: "т" }, { t: "ee", s: "ии", hi: true }, { t: "th", s: "с*" }] },
+          { en: "feet", ru: "ступни", ts: "фиит", ipa: "/fiːt/", breakdown: [{ t: "f", s: "ф" }, { t: "ee", s: "ии", hi: true }, { t: "t", s: "т" }] },
+          { en: "puppies", ru: "щенки", ts: "папиз", ipa: "/ˈpʌpiz/", breakdown: [{ t: "pupp", s: "пап" }, { t: "ies", s: "из", hi: true }] },
+        ]
+      },
+    ]
+  },
+  {
+    id: 6, title: "A Sweet Tooth!", titleRu: "Сладкоежка!", color: "#E91E63",
+    lessons: [
+      {
+        id: "6a", title: "Sweet Things", titleRu: "Сладости",
+        phonics: [
+          { letters: "oo", rus: "уу", ipa: "/uː/", rule: "OO = долгое «уу».", examples: ["food", "tooth", "cool"] },
+          { letters: "ui", rus: "уу", ipa: "/uː/", rule: "UI иногда = «уу».", examples: ["juice", "fruit"] },
+          { letters: "ch", rus: "ч", ipa: "/tʃ/", rule: "CH = «ч».", examples: ["chocolate", "chair", "child"] },
+          { letters: "a...e", rus: "эй", ipa: "/eɪ/", rule: "A + согласная + E = «эй».", examples: ["cake", "name", "game"] },
+          { letters: "j", rus: "дж", ipa: "/dʒ/", rule: "J = «дж».", examples: ["jam", "juice", "jump"] },
+          { letters: "ee", rus: "ии", ipa: "/iː/", rule: "EE = долгое «ии».", examples: ["sweets", "see", "tree"] },
+        ],
+        words: [
+          { en: "lollipop", ru: "леденец", ts: "лолипоп", ipa: "/ˈlɒlipɒp/", breakdown: [{ t: "l", s: "л" }, { t: "o", s: "о", hi: true }, { t: "ll", s: "л" }, { t: "i", s: "и" }, { t: "p", s: "п" }, { t: "o", s: "о" }, { t: "p", s: "п" }] },
+          { en: "chocolate", ru: "шоколад", ts: "чоклит", ipa: "/ˈtʃɒklɪt/", breakdown: [{ t: "ch", s: "ч", hi: true }, { t: "o", s: "о" }, { t: "c", s: "к" }, { t: "late", s: "лит" }] },
+          { en: "jam", ru: "варенье", ts: "джэм", ipa: "/dʒæm/", breakdown: [{ t: "j", s: "дж" }, { t: "a", s: "э", hi: true }, { t: "m", s: "м" }] },
+          { en: "cake", ru: "торт", ts: "кэйк", ipa: "/keɪk/", breakdown: [{ t: "c", s: "к" }, { t: "a", s: "эй", hi: true }, { t: "ke", s: "к" }] },
+          { en: "juice", ru: "сок", ts: "джуус", ipa: "/dʒuːs/", breakdown: [{ t: "j", s: "дж" }, { t: "ui", s: "уу", hi: true }, { t: "ce", s: "с" }] },
+          { en: "sweets", ru: "конфеты", ts: "суиитс", ipa: "/swiːts/", breakdown: [{ t: "sw", s: "су" }, { t: "ee", s: "ии", hi: true }, { t: "ts", s: "тс" }] },
+        ]
+      },
+      {
+        id: "6b", title: "Fruit & Veg", titleRu: "Фрукты и овощи",
+        phonics: [
+          { letters: "ea", rus: "ии", ipa: "/iː/", rule: "EA = долгое «ии».", examples: ["peas", "eat", "read"] },
+          { letters: "rr", rus: "р", ipa: "/r/", rule: "Двойная R = один звук «р».", examples: ["carrot", "cherry", "parrot"] },
+          { letters: "a...e", rus: "эй", ipa: "/eɪ/", rule: "A + согласная + E = «эй».", examples: ["potato", "name", "cake"] },
+          { letters: "or", rus: "оо", ipa: "/ɔː/", rule: "OR = долгое «оо».", examples: ["orange", "morning", "short"] },
+          { letters: "ear", rus: "эа", ipa: "/eə/", rule: "EAR иногда = «эа».", examples: ["pear", "bear", "wear"] },
+        ],
+        words: [
+          { en: "peas", ru: "горох", ts: "пииз", ipa: "/piːz/", breakdown: [{ t: "p", s: "п" }, { t: "ea", s: "ии", hi: true }, { t: "s", s: "з" }] },
+          { en: "banana", ru: "банан", ts: "бэнаанэ", ipa: "/bəˈnɑːnə/", breakdown: [{ t: "b", s: "б" }, { t: "a", s: "э" }, { t: "n", s: "н" }, { t: "a", s: "аа", hi: true }, { t: "na", s: "нэ" }] },
+          { en: "apple", ru: "яблоко", ts: "эпл", ipa: "/ˈæpl/", breakdown: [{ t: "a", s: "э", hi: true }, { t: "pple", s: "пл" }] },
+          { en: "orange", ru: "апельсин", ts: "ориндж", ipa: "/ˈɒrɪndʒ/", breakdown: [{ t: "o", s: "о", hi: true }, { t: "r", s: "р" }, { t: "a", s: "и" }, { t: "nge", s: "ндж" }] },
+          { en: "carrot", ru: "морковь", ts: "кэрэт", ipa: "/ˈkærət/", breakdown: [{ t: "c", s: "к" }, { t: "a", s: "э", hi: true }, { t: "rr", s: "р" }, { t: "ot", s: "эт" }] },
+          { en: "potato", ru: "картофель", ts: "пэтэйтоу", ipa: "/pəˈteɪtəʊ/", breakdown: [{ t: "p", s: "п" }, { t: "o", s: "э" }, { t: "t", s: "т" }, { t: "a", s: "эй", hi: true }, { t: "to", s: "тоу" }] },
+          { en: "tomato", ru: "помидор", ts: "тэмаатоу", ipa: "/təˈmɑːtəʊ/", breakdown: [{ t: "t", s: "т" }, { t: "o", s: "э" }, { t: "m", s: "м" }, { t: "a", s: "аа", hi: true }, { t: "to", s: "тоу" }] },
+          { en: "pear", ru: "груша", ts: "пэа", ipa: "/peə/", breakdown: [{ t: "p", s: "п" }, { t: "ear", s: "эа", hi: true }] },
+        ]
+      },
+      {
+        id: "6c", title: "I Like / I Don't Like", titleRu: "Мне нравится / не нравится",
+        phonics: [
+          { letters: "i...e", rus: "ай", ipa: "/aɪ/", rule: "I + согласная + немая E = «ай».", examples: ["like", "five", "ride"] },
+          { letters: "o", rus: "а", ipa: "/ʌ/", rule: "O иногда = «а» (перед n, m, v, th).", examples: ["love", "some", "come"] },
+          { letters: "ur", rus: "ё", ipa: "/ɜː/", rule: "UR = звук «ё».", examples: ["hurts", "turn", "nurse"] },
+          { letters: "oo", rus: "уу", ipa: "/uː/", rule: "OO = долгое «уу».", examples: ["tooth", "food", "school"] },
+          { letters: "a", rus: "э", ipa: "/æ/", rule: "A в закрытом слоге = «э».", examples: ["matter", "sad", "hat"] },
+        ],
+        words: [
+          { en: "like", ru: "любить", ts: "лайк", ipa: "/laɪk/", breakdown: [{ t: "l", s: "л" }, { t: "i", s: "ай", hi: true }, { t: "ke", s: "к" }] },
+          { en: "love", ru: "обожать", ts: "лав", ipa: "/lʌv/", breakdown: [{ t: "l", s: "л" }, { t: "o", s: "а", hi: true }, { t: "ve", s: "в" }] },
+          { en: "tummy", ru: "животик", ts: "тами", ipa: "/ˈtʌmi/", breakdown: [{ t: "t", s: "т" }, { t: "u", s: "а", hi: true }, { t: "mm", s: "м" }, { t: "y", s: "и" }] },
+          { en: "tooth", ru: "зуб", ts: "туус", ipa: "/tuːθ/", breakdown: [{ t: "t", s: "т" }, { t: "oo", s: "уу", hi: true }, { t: "th", s: "с*" }] },
+          { en: "hurts", ru: "болит", ts: "хётс", ipa: "/hɜːts/", breakdown: [{ t: "h", s: "х" }, { t: "ur", s: "ё", hi: true }, { t: "ts", s: "тс" }] },
+          { en: "matter", ru: "дело", ts: "мэтэ", ipa: "/ˈmætə/", breakdown: [{ t: "m", s: "м" }, { t: "a", s: "э", hi: true }, { t: "tt", s: "т" }, { t: "er", s: "э" }] },
+        ]
+      },
+    ]
+  },
+  {
+    id: 7, title: "The Weather!", titleRu: "Погода!", color: "#1565C0",
+    lessons: [
+      {
+        id: "7a", title: "Weather Words", titleRu: "Слова о погоде",
+        phonics: [
+          { letters: "ai", rus: "эй", ipa: "/eɪ/", rule: "AI в середине слова = «эй».", examples: ["rain", "train", "wait"] },
+          { letters: "ow", rus: "оу", ipa: "/əʊ/", rule: "OW иногда = «оу».", examples: ["snow", "slow", "show"] },
+          { letters: "ou", rus: "ау", ipa: "/aʊ/", rule: "OU = «ау».", examples: ["cloudy", "house", "out"] },
+          { letters: "y (конец)", rus: "и", ipa: "/i/", rule: "Y на конце прилагательных = «и».", examples: ["sunny", "rainy", "windy", "cloudy"] },
+          { letters: "u", rus: "а", ipa: "/ʌ/", rule: "U в закрытом слоге = «а».", examples: ["sunny", "fun", "run"] },
+          { letters: "o...e", rus: "оу", ipa: "/əʊ/", rule: "O + согласная + E = «оу».", examples: ["cold", "home", "nose"] },
+        ],
+        words: [
+          { en: "sunny", ru: "солнечный", ts: "сани", ipa: "/ˈsʌni/", breakdown: [{ t: "s", s: "с" }, { t: "u", s: "а", hi: true }, { t: "nn", s: "н" }, { t: "y", s: "и" }] },
+          { en: "rainy", ru: "дождливый", ts: "рэйни", ipa: "/ˈreɪni/", breakdown: [{ t: "r", s: "р" }, { t: "ai", s: "эй", hi: true }, { t: "n", s: "н" }, { t: "y", s: "и" }] },
+          { en: "cloudy", ru: "облачный", ts: "клауди", ipa: "/ˈklaʊdi/", breakdown: [{ t: "cl", s: "кл" }, { t: "ou", s: "ау", hi: true }, { t: "d", s: "д" }, { t: "y", s: "и" }] },
+          { en: "windy", ru: "ветреный", ts: "уинди", ipa: "/ˈwɪndi/", breakdown: [{ t: "w", s: "у" }, { t: "i", s: "и", hi: true }, { t: "nd", s: "нд" }, { t: "y", s: "и" }] },
+          { en: "snowy", ru: "снежный", ts: "сноуи", ipa: "/ˈsnəʊi/", breakdown: [{ t: "sn", s: "сн" }, { t: "ow", s: "оу", hi: true }, { t: "y", s: "и" }] },
+          { en: "hot", ru: "жарко", ts: "хот", ipa: "/hɒt/", breakdown: [{ t: "h", s: "х" }, { t: "o", s: "о", hi: true }, { t: "t", s: "т" }] },
+          { en: "cold", ru: "холодно", ts: "коулд", ipa: "/kəʊld/", breakdown: [{ t: "c", s: "к" }, { t: "o", s: "оу", hi: true }, { t: "ld", s: "лд" }] },
+        ]
+      },
+      {
+        id: "7b", title: "Present Continuous", titleRu: "Настоящее длительное",
+        phonics: [
+          { letters: "-ing", rus: "инг", ipa: "/ɪŋ/", rule: "Окончание -ING = «инг». Добавляем к глаголам.", examples: ["eating", "playing", "running"] },
+          { letters: "wh", rus: "у", ipa: "/w/", rule: "WH = «у» (h молчит).", examples: ["what", "where", "when"] },
+          { letters: "ea", rus: "ии", ipa: "/iː/", rule: "EA = долгое «ии».", examples: ["eating", "read", "sea"] },
+          { letters: "ai", rus: "эй", ipa: "/eɪ/", rule: "AI = «эй».", examples: ["raining", "rain", "train"] },
+          { letters: "ow", rus: "оу", ipa: "/əʊ/", rule: "OW = «оу».", examples: ["snowing", "snow", "slow"] },
+          { letters: "u", rus: "а", ipa: "/ʌ/", rule: "U в закрытом слоге = «а».", examples: ["running", "fun", "sun"] },
+        ],
+        words: [
+          { en: "eating", ru: "ест (сейчас)", ts: "иитинг", ipa: "/ˈiːtɪŋ/", breakdown: [{ t: "ea", s: "ии", hi: true }, { t: "t", s: "т" }, { t: "ing", s: "инг", hi: true }] },
+          { en: "climbing", ru: "лезет (сейчас)", ts: "клайминг", ipa: "/ˈklaɪmɪŋ/", breakdown: [{ t: "cl", s: "кл" }, { t: "i", s: "ай", hi: true }, { t: "mb", s: "м" }, { t: "ing", s: "инг", hi: true }] },
+          { en: "playing", ru: "играет (сейчас)", ts: "плэйинг", ipa: "/ˈpleɪɪŋ/", breakdown: [{ t: "pl", s: "пл" }, { t: "ay", s: "эй", hi: true }, { t: "ing", s: "инг", hi: true }] },
+          { en: "flying", ru: "летит (сейчас)", ts: "флайинг", ipa: "/ˈflaɪɪŋ/", breakdown: [{ t: "fl", s: "фл" }, { t: "y", s: "ай", hi: true }, { t: "ing", s: "инг", hi: true }] },
+          { en: "raining", ru: "идёт дождь", ts: "рэйнинг", ipa: "/ˈreɪnɪŋ/", breakdown: [{ t: "r", s: "р" }, { t: "ai", s: "эй", hi: true }, { t: "n", s: "н" }, { t: "ing", s: "инг", hi: true }] },
+          { en: "snowing", ru: "идёт снег", ts: "сноуинг", ipa: "/ˈsnəʊɪŋ/", breakdown: [{ t: "sn", s: "сн" }, { t: "ow", s: "оу", hi: true }, { t: "ing", s: "инг", hi: true }] },
+          { en: "swimming", ru: "плавает (сейчас)", ts: "суиминг", ipa: "/ˈswɪmɪŋ/", breakdown: [{ t: "sw", s: "су" }, { t: "i", s: "и", hi: true }, { t: "mm", s: "м" }, { t: "ing", s: "инг", hi: true }] },
+          { en: "running", ru: "бежит (сейчас)", ts: "ранинг", ipa: "/ˈrʌnɪŋ/", breakdown: [{ t: "r", s: "р" }, { t: "u", s: "а", hi: true }, { t: "nn", s: "н" }, { t: "ing", s: "инг", hi: true }] },
+        ]
+      },
+    ]
+  },
+  {
+    id: 8, title: "Looking Good!", titleRu: "Отлично выглядишь!", color: "#7B2D8E",
+    lessons: [
+      {
+        id: "8a", title: "Clothes", titleRu: "Одежда",
+        phonics: [
+          { letters: "sh", rus: "ш", ipa: "/ʃ/", rule: "SH = «ш».", examples: ["shirt", "shoes", "shorts", "shop"] },
+          { letters: "oo", rus: "уу", ipa: "/uː/", rule: "OO = долгое «уу».", examples: ["boots", "cool", "school"] },
+          { letters: "ir", rus: "ё", ipa: "/ɜː/", rule: "IR = «ё».", examples: ["T-shirt", "skirt", "bird"] },
+          { letters: "ou", rus: "ау", ipa: "/aʊ/", rule: "OU = «ау».", examples: ["trousers", "house", "mouse"] },
+          { letters: "ck", rus: "к", ipa: "/k/", rule: "CK = один звук «к».", examples: ["jacket", "socks", "black"] },
+          { letters: "j", rus: "дж", ipa: "/dʒ/", rule: "J = «дж».", examples: ["jacket", "jeans", "jump"] },
+        ],
+        words: [
+          { en: "T-shirt", ru: "футболка", ts: "тиишёт", ipa: "/ˈtiːʃɜːt/", breakdown: [{ t: "T", s: "ти" }, { t: "-sh", s: "-ш", hi: true }, { t: "ir", s: "ё" }, { t: "t", s: "т" }] },
+          { en: "skirt", ru: "юбка", ts: "скёт", ipa: "/skɜːt/", breakdown: [{ t: "sk", s: "ск" }, { t: "ir", s: "ё", hi: true }, { t: "t", s: "т" }] },
+          { en: "trousers", ru: "брюки", ts: "траузэз", ipa: "/ˈtraʊzəz/", breakdown: [{ t: "tr", s: "тр" }, { t: "ou", s: "ау", hi: true }, { t: "s", s: "з" }, { t: "er", s: "э" }, { t: "s", s: "з" }] },
+          { en: "jacket", ru: "куртка", ts: "джэкит", ipa: "/ˈdʒækɪt/", breakdown: [{ t: "j", s: "дж" }, { t: "a", s: "э", hi: true }, { t: "ck", s: "к" }, { t: "et", s: "ит" }] },
+          { en: "dress", ru: "платье", ts: "дрэс", ipa: "/dres/", breakdown: [{ t: "dr", s: "др" }, { t: "e", s: "э", hi: true }, { t: "ss", s: "с" }] },
+          { en: "hat", ru: "шляпа", ts: "хэт", ipa: "/hæt/", breakdown: [{ t: "h", s: "х" }, { t: "a", s: "э", hi: true }, { t: "t", s: "т" }] },
+          { en: "shoes", ru: "туфли", ts: "шууз", ipa: "/ʃuːz/", breakdown: [{ t: "sh", s: "ш", hi: true }, { t: "oe", s: "уу" }, { t: "s", s: "з" }] },
+          { en: "socks", ru: "носки", ts: "сокс", ipa: "/sɒks/", breakdown: [{ t: "s", s: "с" }, { t: "o", s: "о", hi: true }, { t: "cks", s: "кс" }] },
+        ]
+      },
+      {
+        id: "8b", title: "I'm Wearing...", titleRu: "На мне надето...",
+        phonics: [
+          { letters: "ea", rus: "э", ipa: "/e/", rule: "EA иногда = короткое «э» (не всегда «ии»!).", examples: ["wearing", "head", "sweater"] },
+          { letters: "oa", rus: "оу", ipa: "/əʊ/", rule: "OA = «оу».", examples: ["coat", "boat", "road"] },
+          { letters: "oo", rus: "уу", ipa: "/uː/", rule: "OO = долгое «уу».", examples: ["boots", "cool", "school"] },
+          { letters: "or", rus: "оо", ipa: "/ɔː/", rule: "OR = долгое «оо».", examples: ["shorts", "morning", "horse"] },
+          { letters: "ea (долг.)", rus: "ии", ipa: "/iː/", rule: "EA чаще = долгое «ии».", examples: ["jeans", "read", "eat"] },
+          { letters: "-ing", rus: "инг", ipa: "/ɪŋ/", rule: "Окончание -ING = «инг».", examples: ["wearing", "playing", "running"] },
+        ],
+        words: [
+          { en: "boots", ru: "сапоги", ts: "буутс", ipa: "/buːts/", breakdown: [{ t: "b", s: "б" }, { t: "oo", s: "уу", hi: true }, { t: "ts", s: "тс" }] },
+          { en: "coat", ru: "пальто", ts: "коут", ipa: "/kəʊt/", breakdown: [{ t: "c", s: "к" }, { t: "oa", s: "оу", hi: true }, { t: "t", s: "т" }] },
+          { en: "shorts", ru: "шорты", ts: "шотс", ipa: "/ʃɔːts/", breakdown: [{ t: "sh", s: "ш", hi: true }, { t: "or", s: "о" }, { t: "ts", s: "тс" }] },
+          { en: "sweater", ru: "свитер", ts: "суэтэ", ipa: "/ˈswetə/", breakdown: [{ t: "sw", s: "су" }, { t: "ea", s: "э", hi: true }, { t: "t", s: "т" }, { t: "er", s: "э" }] },
+          { en: "jeans", ru: "джинсы", ts: "джиинз", ipa: "/dʒiːnz/", breakdown: [{ t: "j", s: "дж" }, { t: "ea", s: "ии", hi: true }, { t: "ns", s: "нз" }] },
+          { en: "wearing", ru: "ношу (сейчас)", ts: "уэринг", ipa: "/ˈweərɪŋ/", breakdown: [{ t: "w", s: "у" }, { t: "ea", s: "эа", hi: true }, { t: "r", s: "р" }, { t: "ing", s: "инг", hi: true }] },
+        ]
+      },
+    ]
+  },
+];
+const GRAMMAR = [
+  {
+    id: "g1", title: "Множественное число", titleEn: "Plurals", color: "#D95D39",
+    theory: [
+      {heading: "Что такое множественное число?", text: "Если предмет один — это единственное число: a cat (кошка). Если предметов два или больше — это множественное число: cats (кошки). В английском множественное число образуется с помощью окончаний."},
+      {heading: "Правило 1: окончание -s", text: "К большинству слов просто добавляем -s на конце.", ex: ["cake → cakes (торты)", "dog → dogs (собаки)", "flower → flowers (цветы)", "cap → caps (кепки)"]},
+      {heading: "Правило 2: окончание -es", text: "Если слово заканчивается на s, ss, sh, ch, x — добавляем -es. Это нужно, чтобы слово было удобно произносить.", ex: ["glass → glasses (стаканы)", "sandwich → sandwiches (бутерброды)", "box → boxes (коробки)", "bus → buses (автобусы)"]},
+      {heading: "Правило 3: -y → -ies", text: "Если слово заканчивается на -y, а ПЕРЕД y стоит согласная буква — убираем y и пишем -ies.", ex: ["cherry → cherries (вишни)", "butterfly → butterflies (бабочки)", "puppy → puppies (щенки)", "family → families (семьи)"]},
+      {heading: "Правило 4: -y → -ys", text: "Если перед -y стоит гласная буква (a, e, i, o, u) — просто добавляем -s. Букву y НЕ убираем.", ex: ["monkey → monkeys (обезьяны)", "toy → toys (игрушки)", "boy → boys (мальчики)", "key → keys (ключи)"]},
+      {heading: "Исключения", text: "Некоторые слова меняются не по правилам. Их нужно выучить наизусть.", ex: ["tooth → teeth (зубы)", "foot → feet (ступни)", "mouse → mice (мыши)", "man → men (мужчины)", "child → children (дети)"]},
+    ],
+    quiz: [
+      { q: "cake → ?", answer: "cakes", options: ["cakes", "cakees", "cakies", "cake"] },
+      { q: "glass → ?", answer: "glasses", options: ["glasss", "glasses", "glass", "glassies"] },
+      { q: "cherry → ?", answer: "cherries", options: ["cherrys", "cherries", "cherryes", "cherry"] },
+      { q: "monkey → ?", answer: "monkeys", options: ["monkies", "monkeyes", "monkeys", "monkes"] },
+      { q: "tooth → ?", answer: "teeth", options: ["tooths", "toothes", "teeth", "toothies"] },
+      { q: "butterfly → ?", answer: "butterflies", options: ["butterflys", "butterflies", "butterfles", "butterflyes"] },
+      { q: "box → ?", answer: "boxes", options: ["boxs", "boxes", "boxies", "box"] },
+      { q: "foot → ?", answer: "feet", options: ["foots", "footes", "feets", "feet"] },
+    ]
+  },
+  {
+    id: "g2", title: "Мне нравится / не нравится", titleEn: "I like / I don't like", color: "#E91E63",
+    theory: [
+      {heading: "Как сказать «мне нравится»", text: "Используем слово like (нравится, люблю). После like ставим то, что нравится.", ex: ["I like chocolate. — Я люблю шоколад.", "I like bananas. — Я люблю бананы."]},
+      {heading: "I love = я обожаю", text: "Love — более сильное слово, чем like.", ex: ["I love cake! — Я обожаю торт!"]},
+      {heading: "Как сказать «мне НЕ нравится»", text: "Добавляем don't (= do not) перед like.", ex: ["I don't like peas. — Я не люблю горох.", "I don't like tomatoes. — Я не люблю помидоры."]},
+      {heading: "Как спросить «тебе нравится?»", text: "Начинаем вопрос с Do you:", ex: ["Do you like juice? — Ты любишь сок?", "Do you like sweets? — Ты любишь конфеты?"]},
+      {heading: "Краткие ответы", text: "На вопрос с Do you like...? отвечаем кратко:", ex: ["Yes, I do. — Да.", "No, I don't. — Нет."]},
+    ],
+    quiz: [
+      { q: "Я люблю шоколад.", answer: "I like chocolate.", options: ["I like chocolate.", "I don't like chocolate.", "Do you like chocolate?", "I likes chocolate."] },
+      { q: "Я не люблю горох.", answer: "I don't like peas.", options: ["I not like peas.", "I don't like peas.", "I doesn't like peas.", "I like not peas."] },
+      { q: "Ты любишь сок?", answer: "Do you like juice?", options: ["You like juice?", "Do you like juice?", "Are you like juice?", "Like you juice?"] },
+      { q: "Да. (ответ на Do you like?)", answer: "Yes, I do.", options: ["Yes, I am.", "Yes, I do.", "Yes, I like.", "Yes, I can."] },
+    ]
+  },
+  {
+    id: "g3", title: "Я умею / не умею", titleEn: "Can / Can't", color: "#F4A100",
+    theory: [
+      {heading: "Can = умею, могу", text: "Слово can ставим перед глаголом. Глагол после can всегда стоит в начальной форме — без окончаний.", ex: ["I can swim. — Я умею плавать.", "A bird can sing. — Птица умеет петь.", "He can run fast. — Он умеет быстро бегать."]},
+      {heading: "Can't = не умею", text: "Can't (= cannot) — отрицание. Значит «не умею, не могу».", ex: ["I can't climb. — Я не умею лазить.", "A frog can't fly. — Лягушка не умеет летать.", "She can't swim. — Она не умеет плавать."]},
+      {heading: "Вопрос: Can + кто + глагол?", text: "Чтобы спросить — ставим can на первое место.", ex: ["Can you dance? — Ты умеешь танцевать?", "Can she sing? — Она умеет петь?", "Can it jump? — Оно умеет прыгать?"]},
+      {heading: "Краткие ответы", text: "На вопрос с Can...? отвечаем:", ex: ["Yes, I can. — Да, умею.", "No, I can't. — Нет, не умею."]},
+    ],
+    quiz: [
+      { q: "Я умею плавать.", answer: "I can swim.", options: ["I can swim.", "I can swimming.", "I swim can.", "I am swim."] },
+      { q: "Она не умеет летать.", answer: "She can't fly.", options: ["She can't fly.", "She don't fly.", "She not can fly.", "She can fly not."] },
+      { q: "Ты умеешь танцевать?", answer: "Can you dance?", options: ["Do you can dance?", "Can you dance?", "You can dance?", "Are you dance?"] },
+      { q: "Да, умею.", answer: "Yes, I can.", options: ["Yes, I do.", "Yes, I am.", "Yes, I can.", "Yes, can."] },
+    ]
+  },
+  {
+    id: "g4", title: "Настоящее длительное время", titleEn: "Present Continuous", color: "#1565C0",
+    theory: [
+      {heading: "Когда используется", text: "Present Continuous описывает действие, которое происходит ПРЯМО СЕЙЧАС, в момент речи. Формула: am / is / are + глагол с окончанием -ing."},
+      {heading: "С местоимением I", text: "I + am + глагол-ing", ex: ["I am eating. = I'm eating. — Я ем (сейчас).", "I am playing. = I'm playing. — Я играю (сейчас)."]},
+      {heading: "С he, she, it", text: "He / She / It + is + глагол-ing", ex: ["She is climbing. = She's climbing. — Она лезет.", "It is raining. = It's raining. — Идёт дождь.", "He is running. = He's running. — Он бежит."]},
+      {heading: "С we, you, they", text: "We / You / They + are + глагол-ing", ex: ["They are playing. = They're playing. — Они играют.", "We are swimming. — Мы плаваем."]},
+      {heading: "Как добавлять -ing", text: "Обычно просто прибавляем -ing к глаголу: play → playing, eat → eating, rain → raining."},
+      {heading: "Если глагол заканчивается на -e", text: "Убираем -e, потом добавляем -ing.", ex: ["dance → dancing", "make → making", "ride → riding"]},
+      {heading: "Короткие глаголы (согласная + гласная + согласная)", text: "Удваиваем последнюю согласную, потом добавляем -ing.", ex: ["run → running", "swim → swimming", "sit → sitting"]},
+    ],
+    quiz: [
+      { q: "I ___ eating.", answer: "am", options: ["am", "is", "are", "can"] },
+      { q: "She ___ climbing.", answer: "is", options: ["am", "is", "are", "do"] },
+      { q: "They ___ playing.", answer: "are", options: ["am", "is", "are", "does"] },
+      { q: "dance + ing = ?", answer: "dancing", options: ["dancing", "danceing", "danccing", "dansing"] },
+      { q: "run + ing = ?", answer: "running", options: ["runing", "running", "runeing", "runnning"] },
+      { q: "swim + ing = ?", answer: "swimming", options: ["swiming", "swimming", "swimeing", "swimmming"] },
+    ]
+  },
+  {
+    id: "g5", title: "Описание одежды", titleEn: "I'm wearing...", color: "#7B2D8E",
+    theory: [
+      {heading: "Как описать что на тебе надето", text: "Используем Present Continuous: I'm wearing + название одежды. Мы описываем то, что носим прямо сейчас.", ex: ["I'm wearing a T-shirt. — На мне футболка.", "I'm wearing jeans and boots. — На мне джинсы и сапоги."]},
+      {heading: "Описание чужой одежды", text: "Для «он» / «она» используем He's wearing / She's wearing.", ex: ["She's wearing a dress. — На ней платье.", "He's wearing blue shoes. — На нём синие туфли."]},
+      {heading: "Одежда + цвет", text: "Цвет ставится ПЕРЕД названием одежды.", ex: ["I'm wearing a red hat. — На мне красная шляпа.", "She's wearing a green skirt. — На ней зелёная юбка."]},
+      {heading: "Как спросить", text: "What are you wearing? = Что на тебе надето?", ex: ["What are you wearing? — Что на тебе?", "What is she wearing? — Что на ней?"]},
+    ],
+    quiz: [
+      { q: "На мне футболка.", answer: "I'm wearing a T-shirt.", options: ["I'm wearing a T-shirt.", "I wear a T-shirt.", "I wearing a T-shirt.", "I'm wear a T-shirt."] },
+      { q: "На ней платье.", answer: "She's wearing a dress.", options: ["She wearing a dress.", "She's wearing a dress.", "She wear a dress.", "She is wear a dress."] },
+      { q: "Что на тебе надето?", answer: "What are you wearing?", options: ["What are you wearing?", "What you wearing?", "What do you wearing?", "What is you wearing?"] },
+    ]
+  },
+  {
+    id: "g6", title: "Указательные слова", titleEn: "This / That / These / Those", color: "#00897B",
+    theory: [
+      {heading: "Когда предмет РЯДОМ и он ОДИН", text: "Используем this is (это).", ex: ["This is a butterfly. — Это бабочка.", "This is my mummy. — Это моя мама."]},
+      {heading: "Когда предметы РЯДОМ и их МНОГО", text: "Используем these are (это, эти).", ex: ["These are spiders. — Это пауки.", "These are my shoes. — Это мои туфли."]},
+      {heading: "Когда предмет ДАЛЕКО и он ОДИН", text: "Используем that is (то, тот).", ex: ["That is an elephant. — То слон.", "That is my school. — То моя школа."]},
+      {heading: "Когда предметы ДАЛЕКО и их МНОГО", text: "Используем those are (те).", ex: ["Those are birds. — То птицы.", "Those are monkeys. — То обезьяны."]},
+      {heading: "Таблица", text: "БЛИЗКО: this (1) / these (много). ДАЛЕКО: that (1) / those (много)."},
+    ],
+    quiz: [
+      { q: "___ is a butterfly. (рядом, одна)", answer: "This", options: ["This", "These", "That", "Those"] },
+      { q: "___ are spiders. (рядом, много)", answer: "These", options: ["This", "These", "That", "Those"] },
+      { q: "___ is my school. (далеко)", answer: "That", options: ["This", "These", "That", "Those"] },
+      { q: "___ are birds. (далеко, много)", answer: "Those", options: ["This", "These", "That", "Those"] },
+    ]
+  },
+  {
+    id: "g7", title: "Числа от 1 до 20", titleEn: "Numbers 1–20", color: "#8E24AA",
+    theory: [
+      {heading: "Числа 1–10", text: "Каждое число уникальное, запоминаем:", ex: ["1 — one", "2 — two", "3 — three", "4 — four", "5 — five", "6 — six", "7 — seven", "8 — eight", "9 — nine", "10 — ten"]},
+      {heading: "Числа 11 и 12", text: "Эти два числа тоже уникальные — не образуются по общему правилу.", ex: ["11 — eleven", "12 — twelve"]},
+      {heading: "Числа 13–19: корень + teen", text: "Числа от 13 до 19 образуются так: изменённый корень числа + суффикс -teen. Ударение падает на -teen.", ex: ["13 — thirteen (от three)", "14 — fourteen (от four)", "15 — fifteen (от five, меняется!)", "16 — sixteen", "17 — seventeen", "18 — eighteen", "19 — nineteen"]},
+      {heading: "Число 20", text: "Twenty — двадцать. Суффикс -ty означает «десятки» (как -teen означает «надцать»).", ex: ["20 — twenty"]},
+    ],
+    quiz: [
+      { q: "5 по-английски", answer: "five", options: ["five", "fife", "fiv", "faiv"] },
+      { q: "11 по-английски", answer: "eleven", options: ["oneteen", "eleven", "elven", "elleven"] },
+      { q: "13 по-английски", answer: "thirteen", options: ["threeteen", "thirteen", "tirteen", "therteen"] },
+      { q: "15 по-английски", answer: "fifteen", options: ["fiveteen", "fifteen", "fiften", "fivteen"] },
+      { q: "20 по-английски", answer: "twenty", options: ["twenty", "twoty", "tweny", "twenteen"] },
+    ]
+  },
+  {
+    id: "g8", title: "У меня есть", titleEn: "Have got / Has got", color: "#E8523F",
+    theory: [
+      {heading: "Have got = иметь", text: "Чтобы сказать «у меня есть» — используем have got. Сокращённая форма: I've got.", ex: ["I have got a sister. = I've got a sister. — У меня есть сестра.", "I've got blue eyes. — У меня голубые глаза.", "I've got fair hair. — У меня светлые волосы."]},
+      {heading: "Has got — для he, she, it", text: "Для третьего лица (он, она, оно) используем has got. Сокращённо: he's got, she's got.", ex: ["She has got a dog. = She's got a dog. — У неё есть собака.", "He's got long hair. — У него длинные волосы."]},
+      {heading: "Отрицание: haven't got / hasn't got", text: "Чтобы сказать «у меня нет» — добавляем not.", ex: ["I haven't got a brother. — У меня нет брата.", "She hasn't got a cat. — У неё нет кошки."]},
+      {heading: "Вопрос: Have you got...?", text: "Чтобы спросить — ставим Have (или Has) на первое место.", ex: ["Have you got a pet? — У тебя есть питомец?", "Has she got a bike? — У неё есть велосипед?"]},
+      {heading: "Краткие ответы", text: "На вопрос с Have you got...? отвечаем:", ex: ["Yes, I have. — Да (есть).", "No, I haven't. — Нет.", "Yes, she has. / No, she hasn't."]},
+    ],
+    quiz: [
+      { q: "У меня есть сестра.", answer: "I've got a sister.", options: ["I've got a sister.", "I have a sister got.", "I got a sister.", "I has got a sister."] },
+      { q: "У неё есть собака.", answer: "She's got a dog.", options: ["She's got a dog.", "She have got a dog.", "She got a dog.", "She've got a dog."] },
+      { q: "У тебя есть питомец?", answer: "Have you got a pet?", options: ["Have you got a pet?", "Do you got a pet?", "Has you got a pet?", "Got you a pet?"] },
+      { q: "У меня нет брата.", answer: "I haven't got a brother.", options: ["I haven't got a brother.", "I hasn't got a brother.", "I not got a brother.", "I don't got a brother."] },
+    ]
+  },
+  {
+    id: "g9", title: "Предлоги места", titleEn: "In / On / Under", color: "#6D4C41",
+    theory: [
+      {heading: "In = в, внутри", text: "Предмет находится ВНУТРИ чего-то.", ex: ["The ball is in the box. — Мяч в коробке.", "Mummy is in the kitchen. — Мама на кухне.", "The cat is in the garden. — Кошка в саду."]},
+      {heading: "On = на поверхности", text: "Предмет лежит НА чём-то сверху.", ex: ["The book is on the table. — Книга на столе.", "The cat is on the chair. — Кошка на стуле.", "The hat is on my head. — Шляпа на голове."]},
+      {heading: "Under = под", text: "Предмет находится ПОД чем-то.", ex: ["The dog is under the bed. — Собака под кроватью.", "The ball is under the table. — Мяч под столом."]},
+      {heading: "Как спросить «где?»", text: "Where is...? = Где...? Where's = сокращённая форма.", ex: ["Where is the cat? — It's in the garden. (Где кошка? — В саду.)", "Where's daddy? — He's in the bedroom. (Где папа? — В спальне.)"]},
+    ],
+    quiz: [
+      { q: "Мяч ___ коробке. (внутри)", answer: "in", options: ["in", "on", "under", "at"] },
+      { q: "Книга ___ столе. (сверху)", answer: "on", options: ["in", "on", "under", "at"] },
+      { q: "Собака ___ кроватью.", answer: "under", options: ["in", "on", "under", "at"] },
+      { q: "Mummy is ___ the kitchen.", answer: "in", options: ["in", "on", "under", "at"] },
+      { q: "The hat is ___ my head.", answer: "on", options: ["in", "on", "under", "at"] },
+    ]
+  },
+  {
+    id: "g10", title: "Глагол «быть»", titleEn: "Am / Is / Are", color: "#E8523F",
+    theory: [
+      {heading: "Что это за глагол", text: "В русском мы говорим «Я счастлив» без глагола. В английском ОБЯЗАТЕЛЬНО нужен глагол be (быть). Он меняет форму в зависимости от подлежащего."},
+      {heading: "I → am", text: "Сокращённо: I'm", ex: ["I am seven. = I'm seven. — Мне семь лет.", "I am happy. = I'm happy. — Я счастлив."]},
+      {heading: "He / She / It → is", text: "Сокращённо: he's, she's, it's", ex: ["He is in the bedroom. = He's in the bedroom. — Он в спальне.", "She is tall. = She's tall. — Она высокая.", "It is a cat. = It's a cat. — Это кошка."]},
+      {heading: "We / You / They → are", text: "Сокращённо: we're, you're, they're", ex: ["We are ten. = We're ten. — Нам десять.", "They are brothers. = They're brothers. — Они братья.", "You are funny. = You're funny. — Ты смешной."]},
+      {heading: "Вопрос", text: "Чтобы задать вопрос — переставляем am/is/are на первое место.", ex: ["Is he in the garden? — Он в саду?", "Are you happy? — Ты счастлив?", "Is it a dog? — Это собака?"]},
+      {heading: "Отрицание", text: "Добавляем not после am/is/are. Сокращения: isn't = is not, aren't = are not.", ex: ["I'm not sad. — Я не грустный.", "She isn't tall. — Она не высокая.", "They aren't here. — Их тут нет."]},
+    ],
+    quiz: [
+      { q: "I ___ happy.", answer: "am", options: ["am", "is", "are", "be"] },
+      { q: "She ___ tall.", answer: "is", options: ["am", "is", "are", "be"] },
+      { q: "They ___ brothers.", answer: "are", options: ["am", "is", "are", "be"] },
+      { q: "___ you happy? (вопрос)", answer: "Are", options: ["Am", "Is", "Are", "Do"] },
+      { q: "She ___ tall. (отрицание)", answer: "isn't", options: ["aren't", "isn't", "amn't", "not"] },
+    ]
+  },
+];
+function sh(a) { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = 0 | Math.random() * (i + 1); [b[i], b[j]] = [b[j], b[i]]; } return b; }
+function pick(arr, exc, n) { return sh(arr.filter(x => x !== exc)).slice(0, n); }
+
+function buildQs(lesson, allPh) {
+  const ws = lesson.words, phs = lesson.phonics, qs = [];
+  sh(ws).forEach(w => { const o = sh([w.ru, ...pick(ws.map(x => x.ru), w.ru, 3)]).slice(0, 4); qs.push({ prompt: w.en, sub: "Как переводится?", answer: w.ru, options: o, tag: "перевод" }); });
+  sh(ws).forEach(w => { const o = sh([w.en, ...pick(ws.map(x => x.en), w.en, 3)]).slice(0, 4); qs.push({ prompt: w.ru, sub: "Выбери английское слово", answer: w.en, options: o, tag: "перевод" }); });
+  sh(ws).filter(w => w.ts).forEach(w => { const ot = ws.filter(x => x.ts && x.en !== w.en).map(x => x.ts); if (ot.length < 2) return; const o = sh([w.ts, ...pick(ot, w.ts, 3)]).slice(0, 4); qs.push({ prompt: w.en, sub: "Как читается?", answer: w.ts, options: o, tag: "чтение" }); });
+  sh(ws).filter(w => w.ts).slice(0, 5).forEach(w => { const ot = ws.filter(x => x.ts && x.en !== w.en).map(x => x.en); if (ot.length < 2) return; const o = sh([w.en, ...pick(ot, w.en, 3)]).slice(0, 4); qs.push({ prompt: w.ts, sub: "Какое слово так читается?", answer: w.en, options: o, tag: "чтение" }); });
+  sh(ws).filter(w => w.ipa && w.ts).forEach(w => { const ot = ws.filter(x => x.ts && x.en !== w.en).map(x => x.ts); if (ot.length < 2) return; const o = sh([w.ts, ...pick(ot, w.ts, 3)]).slice(0, 4); qs.push({ prompt: w.ipa, sub: "Как это читается по-русски?", answer: w.ts, options: o, tag: "чтение" }); });
+  phs.forEach(p => { const all = [...new Set([...phs.map(x => x.rus), ...(allPh || []).map(x => x.rus)])]; const ot = all.filter(x => x !== p.rus); if (ot.length < 2) return; const o = sh([p.rus, ...pick(ot, p.rus, 3)]).slice(0, 4); qs.push({ prompt: p.letters, sub: "Какой звук дают эти буквы?", answer: p.rus, options: o, tag: "звук", ipa: p.ipa }); });
+  phs.forEach(p => { const yes = ws.filter(w => w.breakdown.some(b => b.hi && b.s.includes(p.rus.split(" ")[0]))); const no = ws.filter(w => !yes.includes(w)); if (!yes.length || no.length < 2) return; const c = sh(yes)[0]; const o = sh([c.en, ...pick(no.map(x => x.en), c.en, 3)]).slice(0, 4); qs.push({ prompt: p.letters + " = " + p.rus, sub: "В каком слове есть этот звук?", answer: c.en, options: o, tag: "звук" }); });
+  return sh(qs);
+}
+
+const $=id=>document.getElementById(id),app=$("app");
+let state={scr:"home",modId:null,lesId:null,tab:"ph",gramId:null,gramTab:"theory"};
+let practiceState=null,gramQuizState=null;
+function e(s){const d=document.createElement("div");d.textContent=s;return d.innerHTML;}
+
+function render(){
+  const{scr,modId,lesId,gramId}=state;
+  const mod=MODULES.find(m=>m.id===modId),les=mod?mod.lessons.find(l=>l.id===lesId):null;
+  const gt=GRAMMAR.find(g=>g.id===gramId);
+  if(scr==="gram-detail"&&gt){renderGD(gt);return;}
+  if(scr==="gram"){renderGL();return;}
+  if(scr==="les"&&mod&&les){renderL(mod,les);return;}
+  if(scr==="mod"&&mod){renderM(mod);return;}
+  renderH();
+}
+
+function renderH(){
+  const p1=MODULES.filter(m=>m.id<=4),p2=MODULES.filter(m=>m.id>=5);
+  app.innerHTML='<div class="fu"><div class="hdr"><h1>Starlight 2</h1><div class="sub">Звёздный английский · Фоника и слова</div></div>'+
+  '<button class="gram-btn fu" onclick="go(\'gram\')"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><div><div class="gb-t">Грамматика</div><div class="gb-s">Теория · Примеры · Тренировка</div></div></button>'+
+  '<div class="part-label">Часть 1 · Модули 0–4</div><div class="mlist">'+p1.map((m,i)=>mC(m,i)).join("")+
+  '</div><div class="sep-line"></div><div class="part-label">Часть 2 · Модули 5–8</div><div class="mlist">'+p2.map((m,i)=>mC(m,i+p1.length)).join("")+'</div></div>';
+}
+function mC(m,i){const w=m.lessons.reduce((s,l)=>s+l.words.length,0);return'<div class="mc fu" style="animation-delay:'+i*.05+'s" onclick="goMod('+m.id+')"><div class="mc-bar" style="background:'+m.color+'"></div><div class="mc-num" style="background:'+m.color+'">'+m.id+'</div><div class="mc-t">'+e(m.title)+'</div><div class="mc-tr">'+e(m.titleRu)+'</div><div class="mc-info">'+m.lessons.length+' уроков · '+w+' слов</div></div>';}
+function renderM(mod){app.innerHTML='<div class="fu"><div class="ph"><button class="bb" onclick="go(\'home\')">←</button><div><div class="pt" style="color:'+mod.color+'">Модуль '+mod.id+': '+e(mod.title)+'</div><div class="ps">'+e(mod.titleRu)+'</div></div></div><div class="llist">'+mod.lessons.map((l,i)=>'<div class="lc fu" style="animation-delay:'+i*.06+'s" onclick="goLes(\''+l.id+'\')"><div><h3>'+e(l.title)+'</h3><p>'+e(l.titleRu)+' · '+l.words.length+' слов</p></div><span style="color:'+mod.color+';font-weight:700;font-size:18px">→</span></div>').join("")+'</div></div>';}
+function renderL(mod,les){const tabs=[{k:"ph",l:"Звуки"},{k:"wo",l:"Слова"},{k:"pr",l:"Тренировка"}];app.innerHTML='<div class="fu"><div class="ph"><button class="bb" onclick="go(\'mod\')">←</button><div><div class="pt">'+e(les.title)+'</div><div class="ps">'+e(les.titleRu)+'</div></div></div><div class="tabs">'+tabs.map(t=>'<button class="tab'+(state.tab===t.k?' on':'')+'" style="'+(state.tab===t.k?'background:'+mod.color:'')+'" onclick="sT(\''+t.k+'\')">'+t.l+'</button>').join("")+'</div><div id="tc"></div></div>';rT(mod,les);}
+function rT(mod,les){const tc=$("tc");if(!tc)return;if(state.tab==="ph")tc.innerHTML=rPh(les,mod.color);else if(state.tab==="wo")tc.innerHTML=rWo(les,mod.color);else{iPr(les,mod);rPr(mod.color);}}
+function rPh(les,c){return'<div class="cnt">'+les.phonics.map((p,i)=>'<div class="pc fu" style="animation-delay:'+i*.07+'s"><div class="pc-top"><div class="pc-l" style="background:'+c+'15;color:'+c+'">'+e(p.letters)+'</div><span class="pc-eq">=</span><span class="pc-rus" style="color:'+c+'">'+e(p.rus)+'</span><span class="pc-ipa">'+e(p.ipa)+'</span></div><div class="pc-r">'+e(p.rule)+'</div><div class="pc-ex">'+p.examples.map(x=>'<span style="background:'+c+'12;color:'+c+'">'+e(x)+'</span>').join("")+'</div></div>').join("")+'</div>';}
+function rWo(les,c){return'<div class="cnt">'+les.words.map((w,i)=>'<div class="wc fu" style="animation-delay:'+i*.04+'s"><div class="wc-top"><div class="wc-en">'+w.breakdown.map(b=>'<span class="'+(b.hi?"hi":"")+'" style="'+(b.hi?'background:'+c+'18;color:'+c:'')+'">'+e(b.t)+'</span>').join("")+'</div>'+(w.ts?'<div class="wc-ts"><span class="ru">'+e(w.ts)+'</span>'+(w.ipa?'<span class="sep">|</span><span class="ipa">'+e(w.ipa)+'</span>':'')+'</div>':'')+'</div><div class="wc-ru">'+e(w.ru)+'</div><div class="wc-bd">'+w.breakdown.map(b=>'<span class="wb'+(b.hi?" hi":"")+'"><span class="wb-l" style="'+(b.hi?'color:'+c:'')+'">'+e(b.t)+'</span><span class="wb-a">→</span><span class="wb-s">'+e(b.s)+'</span></span>').join("")+'</div></div>').join("")+'</div>';}
+function iPr(les,mod){if(practiceState&&practiceState.lid===les.id)return;practiceState={lid:les.id,qs:buildQs(les,mod.lessons.flatMap(l=>l.phonics)),cur:0,sel:null,res:[],done:false};}
+function rPr(c){const tc=$("tc");if(!tc||!practiceState)return;const ps=practiceState,tC={перевод:{bg:"#EDE7F6",c:"#5E35B1"},чтение:{bg:"#E0F2F1",c:"#00695C"},звук:{bg:"#FFF3E0",c:"#E65100"}};if(ps.done){const s=ps.res.filter(Boolean).length,t=ps.qs.length,p=t>0?s/t:0,st=p>=.95?3:p>=.7?2:p>=.4?1:0;tc.innerHTML='<div class="cnt"><div class="res"><div style="font-size:40px;margin-bottom:8px">'+[0,1,2].map(i=>'<span style="color:'+(i<st?'var(--gold)':'#e0dbd3')+';margin:0 3px">★</span>').join("")+'</div><div class="res-sc" style="color:'+c+'">'+s+'/'+t+'</div><h2>'+(st===3?"Блестяще!":st>=2?"Молодец!":"Ещё разок!")+'</h2><button class="rb" onclick="rPrR()">↻ Ещё раз</button></div></div>';return;}if(!ps.qs.length)return;const q=ps.qs[ps.cur],tot=ps.qs.length,tg=tC[q.tag]||tC["перевод"];tc.innerHTML='<div class="cnt"><div class="prh"><div class="prd">'+ps.qs.map((_,i)=>'<div class="dot'+(i<ps.cur?(ps.res[i]?" ok":" no"):i===ps.cur?" cur":"")+'"></div>').join("")+'</div><div class="prc">'+(ps.cur+1)+'/'+tot+'</div></div><div class="qc si"><div class="tag" style="background:'+tg.bg+';color:'+tg.c+'">'+e(q.tag)+'</div><div class="qw" style="color:'+c+'">'+e(q.prompt)+'</div>'+(q.ipa?'<div class="qipa">'+e(q.ipa)+'</div>':'')+'<div class="qh">'+e(q.sub)+'</div><div class="qo">'+q.options.map((o,i)=>'<button class="qob'+(ps.sel!==null?(o===q.answer?" ok":o===ps.sel?" no":""):"")+'" onclick="pAns('+i+')" '+(ps.sel!==null?'disabled':'')+'>'+e(o)+'</button>').join("")+'</div>'+(ps.sel!==null?'<div class="qfb'+(ps.sel===q.answer?" ok":" no")+'">'+(ps.sel===q.answer?"✓ Правильно!":"✗ Ответ: "+e(q.answer))+'</div><button class="nb" style="background:'+c+'" onclick="pNxt()">'+(ps.cur+1>=tot?"Результат":"Дальше")+' →</button>':'')+'</div></div>';}
+
+// GRAMMAR
+function renderGL(){app.innerHTML='<div class="fu"><div class="ph"><button class="bb" onclick="go(\'home\')">←</button><div><div class="pt" style="color:#6366f1">Грамматика</div><div class="ps">Grammar Reference</div></div></div><div class="gl">'+GRAMMAR.map((g,i)=>'<div class="gc fu" style="animation-delay:'+i*.06+'s;border-left-color:'+g.color+'" onclick="goGram(\''+g.id+'\')"><h3 style="color:'+g.color+'">'+e(g.title)+'</h3><p>'+e(g.titleEn)+'</p></div>').join("")+'</div></div>';}
+function renderGD(t){const gt=state.gramTab||"theory";app.innerHTML='<div class="fu"><div class="ph"><button class="bb" onclick="go(\'gram\')">←</button><div><div class="pt" style="color:'+t.color+'">'+e(t.title)+'</div><div class="ps">'+e(t.titleEn)+'</div></div></div><div class="gram-tabs"><button class="gram-tab'+(gt==="theory"?" on":"")+'" style="'+(gt==="theory"?"background:"+t.color:"")+'" onclick="sGT(\'theory\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Теория</button><button class="gram-tab'+(gt==="examples"?" on":"")+'" style="'+(gt==="examples"?"background:"+t.color:"")+'" onclick="sGT(\'examples\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Примеры</button><button class="gram-tab'+(gt==="quiz"?" on":"")+'" style="'+(gt==="quiz"?"background:"+t.color:"")+'" onclick="sGT(\'quiz\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Тест</button></div><div id="gc2"></div></div>';rGT(t);}
+function rGT(t){const gc=$("gc2");if(!gc)return;const gt=state.gramTab||"theory",c=t.color;
+  if(gt==="theory"){gc.innerHTML='<div class="cnt">'+t.theory.map((s,i)=>{let h='<div class="theory-box fu" style="border-color:'+c+';animation-delay:'+i*.06+'s"><h4 style="color:'+c+'">'+e(s.heading)+'</h4><p>'+e(s.text)+'</p>';if(s.ex)h+=s.ex.map(x=>'<span class="tex">'+e(x)+'</span>').join("");return h+'</div>';}).join("")+'</div>';}
+  else if(gt==="examples"){gc.innerHTML='<div class="cnt">'+t.theory.filter(s=>s.ex&&s.ex.length).map((s,i)=>{let h='<div class="gr-card fu" style="animation-delay:'+i*.06+'s"><div class="gr-rule"><span style="background:'+c+';width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0"></span>'+e(s.heading)+'</div>';h+=s.ex.map(x=>'<div style="padding:6px 12px;border-radius:8px;margin-bottom:3px;background:var(--bg);font-size:14px;font-weight:600;color:'+c+'">'+e(x)+'</div>').join("");return h+'</div>';}).join("")+'</div>';}
+  else if(gt==="quiz"){if(!t.quiz||!t.quiz.length){gc.innerHTML='<div class="cnt"><p style="text-align:center;color:var(--text2);padding:40px">Скоро</p></div>';return;}if(!gramQuizState||gramQuizState.tid!==t.id){gramQuizState={tid:t.id,qs:sh(t.quiz.map(q=>({...q,options:sh([...q.options])}))  ),cur:0,sel:null,res:[],done:false};}rGQ(c);}
+}
+function rGQ(c){const gc=$("gc2");if(!gc||!gramQuizState)return;const gs=gramQuizState;if(gs.done){const s=gs.res.filter(Boolean).length,t=gs.qs.length,p=t>0?s/t:0,st=p>=.95?3:p>=.7?2:p>=.4?1:0;gc.innerHTML='<div class="cnt"><div class="res"><div style="font-size:40px;margin-bottom:8px">'+[0,1,2].map(i=>'<span style="color:'+(i<st?'var(--gold)':'#e0dbd3')+';margin:0 3px">★</span>').join("")+'</div><div class="res-sc" style="color:'+c+'">'+s+'/'+t+'</div><h2>'+(st===3?"Блестяще!":st>=2?"Молодец!":"Ещё разок!")+'</h2><button class="rb" onclick="rGR()">↻ Ещё раз</button></div></div>';return;}const q=gs.qs[gs.cur],tot=gs.qs.length;gc.innerHTML='<div class="cnt"><div class="prh"><div class="prd">'+gs.qs.map((_,i)=>'<div class="dot'+(i<gs.cur?(gs.res[i]?" ok":" no"):i===gs.cur?" cur":"")+'"></div>').join("")+'</div><div class="prc">'+(gs.cur+1)+'/'+tot+'</div></div><div class="qc si"><div class="qw" style="color:'+c+';font-size:20px">'+e(q.q)+'</div><div class="qh">Выбери правильный ответ</div><div class="qo">'+q.options.map((o,i)=>'<button class="qob'+(gs.sel!==null?(o===q.answer?" ok":o===gs.sel?" no":""):"")+'" onclick="gAns('+i+')" '+(gs.sel!==null?'disabled':'')+'>'+e(o)+'</button>').join("")+'</div>'+(gs.sel!==null?'<div class="qfb'+(gs.sel===q.answer?" ok":" no")+'">'+(gs.sel===q.answer?"✓ Правильно!":"✗ Ответ: "+e(q.answer))+'</div><button class="nb" style="background:'+c+'" onclick="gNxt()">'+(gs.cur+1>=tot?"Результат":"Дальше")+' →</button>':'')+'</div></div>';}
+
+function go(s){state.scr=s;practiceState=null;gramQuizState=null;render();scrollTo(0,0);}
+function goMod(id){state.modId=id;state.scr="mod";render();scrollTo(0,0);}
+function goLes(id){state.lesId=id;state.tab="ph";state.scr="les";practiceState=null;render();scrollTo(0,0);}
+function goGram(id){state.gramId=id;state.gramTab="theory";state.scr="gram-detail";gramQuizState=null;render();scrollTo(0,0);}
+function sT(t){state.tab=t;practiceState=null;render();}
+function sGT(t){state.gramTab=t;renderGD(GRAMMAR.find(g=>g.id===state.gramId));}
+function pAns(i){if(!practiceState||practiceState.sel!==null)return;const q=practiceState.qs[practiceState.cur];practiceState.sel=q.options[i];practiceState.res.push(q.options[i]===q.answer);rPr(MODULES.find(m=>m.id===state.modId).color);}
+function pNxt(){if(!practiceState)return;if(practiceState.cur+1>=practiceState.qs.length)practiceState.done=true;else{practiceState.cur++;practiceState.sel=null;}rPr(MODULES.find(m=>m.id===state.modId).color);}
+function rPrR(){const mod=MODULES.find(m=>m.id===state.modId),les=mod.lessons.find(l=>l.id===state.lesId);practiceState=null;iPr(les,mod);rPr(mod.color);}
+function gAns(i){if(!gramQuizState||gramQuizState.sel!==null)return;const q=gramQuizState.qs[gramQuizState.cur];gramQuizState.sel=q.options[i];gramQuizState.res.push(q.options[i]===q.answer);rGQ(GRAMMAR.find(g=>g.id===state.gramId).color);}
+function gNxt(){if(!gramQuizState)return;if(gramQuizState.cur+1>=gramQuizState.qs.length)gramQuizState.done=true;else{gramQuizState.cur++;gramQuizState.sel=null;}rGQ(GRAMMAR.find(g=>g.id===state.gramId).color);}
+function rGR(){gramQuizState=null;rGT(GRAMMAR.find(g=>g.id===state.gramId));}
+render();
+</script>
+</body>
+</html>
