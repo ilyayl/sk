@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Бизнес-процесс СК — интерактивная доска (v2)</title>
+<style>
+:root{--navy:#1f4e79;--navy2:#2e6ca4;--ink:#1b2733;--muted:#5b6b7b;--bg:#e9eef3;--line:#cdd8e2;--accent:#e8a33d;
+--contractor:#c0504d;--sk:#1f7a55;--geo:#7a5fb0;--lead:#1f4e79;--rp:#2e8bc0;--legal:#b2532a;--rso:#6b7b8c;--tz:#3a3f57;}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);overflow:hidden}
+header{background:linear-gradient(120deg,var(--navy),var(--navy2));color:#fff;padding:12px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;box-shadow:0 2px 8px rgba(0,0,0,.2);position:relative;z-index:5}
+header h1{font-size:17px;margin:0;font-weight:700}
+header .hint{font-size:12px;opacity:.85}
+.legend{display:flex;gap:7px;flex-wrap:wrap;margin-left:auto}
+.lg{font-size:11px;background:rgba(255,255,255,.13);border-radius:14px;padding:3px 9px;display:flex;align-items:center;gap:5px}
+.lg b{font-size:13px;line-height:1}
+#viewport{position:absolute;inset:0;top:0;cursor:grab;background:
+  radial-gradient(circle at 1px 1px, #d4dde6 1px, transparent 0);background-size:26px 26px}
+#viewport.grab{cursor:grabbing}
+#board{position:absolute;transform-origin:0 0;will-change:transform}
+svg.links{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.node{position:absolute;border-radius:11px;background:#fff;border:1px solid var(--line);box-shadow:0 2px 6px rgba(31,78,121,.10);padding:9px 12px;font-size:13px;transition:box-shadow .15s,transform .15s}
+.node .nh{font-size:10.5px;font-weight:700;color:#fff;border-radius:6px;padding:1px 7px;display:inline-block;margin-bottom:4px}
+.node .nt{font-weight:700;font-size:13.5px;line-height:1.25}
+.node .ns{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.25}
+.node.phase{border-top:4px solid var(--navy);cursor:pointer}
+.node.phase:hover{box-shadow:0 8px 20px rgba(31,78,121,.28);transform:translateY(-2px)}
+.node.phase .more{position:absolute;right:9px;bottom:7px;font-size:10px;color:var(--navy2);font-weight:700}
+.node.dec{background:#fff8ec;border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;text-align:center}
+.node.dec .nt{font-size:12px;font-weight:700;color:#8a5a12}
+.node.term{background:var(--navy);color:#fff;border:none;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:700}
+.node.term.fin{background:var(--accent);color:#3a2a06}
+.node.side{font-size:11.5px}
+.side.stop{border-left:5px solid var(--contractor);background:#fdf0ef}
+.side.escal{border-left:5px solid var(--legal);background:#fbf0ea}
+.side.info{border-left:5px solid var(--rp);background:#eef5fb}
+.side.rework{border-left:5px solid var(--accent);background:#fff8ec}
+.side.output{border-left:5px solid var(--sk);background:#eef7f2}
+.elabel{position:absolute;font-size:10.5px;font-weight:700;background:#fff;border:1px solid var(--line);border-radius:9px;padding:0 6px;color:var(--muted);transform:translate(-50%,-50%);white-space:nowrap}
+.elabel.y{color:var(--sk);border-color:#bfe0cd}.elabel.n{color:var(--contractor);border-color:#eccac7}
+/* controls */
+#ctrl{position:absolute;right:16px;bottom:16px;z-index:6;display:flex;flex-direction:column;gap:6px}
+#ctrl button{width:40px;height:40px;border-radius:9px;border:1px solid var(--line);background:#fff;font-size:18px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.12);color:var(--navy)}
+#ctrl button:hover{background:var(--navy);color:#fff}
+#ctrl button.sm{font-size:11px;font-weight:700}
+/* drawer */
+#scrim{position:absolute;inset:0;background:rgba(20,30,40,.35);opacity:0;visibility:hidden;transition:.2s;z-index:8}
+#scrim.on{opacity:1;visibility:visible}
+#drawer{position:absolute;top:0;right:0;height:100%;width:440px;max-width:92vw;background:#fff;box-shadow:-6px 0 24px rgba(0,0,0,.25);transform:translateX(100%);transition:transform .25s;z-index:9;overflow-y:auto}
+#drawer.on{transform:none}
+.dh{background:linear-gradient(120deg,var(--navy),var(--navy2));color:#fff;padding:16px 18px;position:sticky;top:0}
+.dh .num{font-size:12px;opacity:.85}
+.dh h2{margin:3px 0 4px;font-size:19px}
+.dh .role{display:inline-block;font-size:11.5px;font-weight:700;background:rgba(255,255,255,.2);border-radius:14px;padding:3px 10px}
+.dh .x{position:absolute;right:14px;top:14px;cursor:pointer;font-size:22px;line-height:1;opacity:.9}
+.dc{padding:16px 18px 40px}
+.box{background:#f7fafc;border:1px solid var(--line);border-radius:9px;padding:11px 13px;margin-bottom:12px}
+.box h4{margin:0 0 7px;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--navy2)}
+.box.io h4{color:var(--sk)} .box ul{margin:0;padding-left:18px;font-size:13px}.box li{margin:3px 0}
+.dec2{background:#fff;border:1px dashed var(--accent);border-radius:9px;padding:11px 13px;margin-bottom:12px}
+.dec2 h4{margin:0 0 7px;font-size:11.5px;text-transform:uppercase;color:#a06a13}
+.branch{display:flex;gap:9px;align-items:flex-start;font-size:13px;margin:5px 0}
+.yn{font-weight:800;border-radius:6px;padding:1px 8px;font-size:11px;flex:0 0 auto;margin-top:1px}
+.yn.y{background:#e3f3ea;color:var(--sk)}.yn.n{background:#fbe7e5;color:var(--contractor)}
+.meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px}
+.pill{font-size:11px;border-radius:13px;padding:3px 9px;border:1px solid var(--line);background:#fff;color:var(--muted)}
+.pill.term{background:#fff3e0;border-color:#f0c98a;color:#8a5a12;font-weight:600}
+.pill.norm{background:#eef4fb;border-color:#c5d9ef;color:#26537e}
+.app{display:inline-block;font-size:10.5px;font-weight:700;background:var(--navy);color:#fff;border-radius:6px;padding:2px 8px;margin:2px 4px 2px 0}
+.afn{margin:6px 0 12px;background:#fbfdff;border:1px solid var(--line);border-radius:9px;padding:11px}
+.afn h4{margin:0 0 9px;color:var(--navy2);font-size:11px;text-transform:uppercase}
+.afn .row{display:flex;flex-wrap:wrap;align-items:center;gap:5px}
+.stp{background:#fff;border:1px solid var(--line);border-top:3px solid var(--sk);border-radius:7px;padding:5px 8px;font-size:11px;max-width:180px}
+.stp.d{border-top-color:var(--accent);background:#fffaf0}.stp.e{border-top-color:var(--contractor)}
+.ar{color:var(--navy2);font-weight:800}
+</style></head>
+<body>
+<header>
+  <h1>Бизнес-процесс «Строительный контроль» · СИП / СКК</h1>
+  <span class="hint">тяните мышью — двигать · колесо — масштаб · клик по фазе — детали</span>
+  <div class="legend" id="legend"></div>
+</header>
+<div id="viewport">
+  <div id="board">
+    <svg class="links" id="links"></svg>
+  </div>
+</div>
+<div id="ctrl">
+  <button onclick="zoom(1.2)">＋</button>
+  <button onclick="zoom(1/1.2)">－</button>
+  <button class="sm" onclick="fit()">FIT</button>
+</div>
+<div id="scrim" onclick="closeDrawer()"></div>
+<div id="drawer"><div id="drawerInner"></div></div>
+
+<script>
+const ROLES={contractor:{n:'Подрядчик',c:'var(--contractor)'},sk:{n:'Специалист СК',c:'var(--sk)'},geo:{n:'Инженер-геодезист',c:'var(--geo)'},lead:{n:'Рук. направления СК',c:'var(--lead)'},rp:{n:'Рук. проекта',c:'var(--rp)'},legal:{n:'Правовая служба',c:'var(--legal)'},tz:{n:'Техзаказчик',c:'var(--tz)'}};
+const APPS={1:'Приказ о назначении лиц СК (СИП)',2:'Приказ о назначении лиц СК (СКК)',3:'Уведомление-вызов представителей СК',4:'Чек-лист освидетельствования работ',5:'Приказ о назначении за геодезический контроль (СИП)',6:'Приказ за геодезический контроль (СКК)',7:'Форма Акта фиксации нарушений (АФН)',8:'Письмо о направлении копии АФН',9:'Журнал регистрации АФН',10:'Уведомление об устранении нарушений по АФН',11:'Служебная записка в Правовую службу',12:'Письмо о направлении ведомости замечаний к ИД',13:'Письмо о направлении ИД в РСО',14:'Чек-лист приёмки выполненных работ',15:'Отчёт о мобилизации по объектам',16:'Расчёт степени готовности (со сводным заключением)',17:'Расчёт степени готовности (без заключения)',18:'План работ в выходной/праздничный день',19:'Отчёт о работе в выходной/праздничный день',20:'Справка к совещанию',21:'Протокол совещания'};
+const STAGES={
+0:{t:'Назначение и подготовка',role:'lead',inputs:['Договор на функции техзаказчика / СК','ПП РФ № 468, ст. 53 ГрК РФ'],actions:['Назначение Специалиста СК приказом (Прил. 1 СИП / 2 СКК)','Внесение сведений о Специалистах СК в НРС','Назначение ведущего инженера-геодезиста (Прил. 5 / 6)','Соблюдение охраны труда и ТБ'],outputs:['Приказ о назначении','Запись в НРС'],norms:['ст. 53 ГрК РФ','ПП РФ № 468','СП 543.1325800.2024','СП 126.13330.2017'],apps:[1,2,5,6]},
+1:{t:'Уведомление-вызов',role:'contractor',inputs:['Готовность работ к освидетельствованию','График работ'],actions:['Подрядчик ≥ за 3 раб. дня направляет официальное уведомление-вызов на бланке (Прил. 3)','В вызове: объект, адрес, время, виды/этапы работ с привязками, участники','Подрядчик прикладывает полевые исполнительные схемы','Специалист СК формирует чек-листы (Прил. 4)','Специалист СК ≥ за 1 раб. день уведомляет о приборах'],decisions:[{q:'Уведомление-вызов в срок и по форме?',y:'Переход к контрольным мероприятиям',n:'Последующие работы НЕ допускаются; не принимаются до обследования (п. 6.4)'}],outputs:['Уведомление-вызов (Прил. 3)','Чек-листы (Прил. 4)','Доступ на объект'],term:'≥ 3 раб. дня; о приборах — ≥ 1 раб. день',norms:['ПП РФ № 468'],apps:[3,4]},
+2:{t:'Входной контроль',role:'sk',inputs:['ПД/РД','Материалы, изделия, оборудование','ОТД'],actions:['Контроль комплектности ПД/РД','Верификация входного контроля подрядчика (документы о качестве, инструментальный контроль)','Проверка ОТД (заверение проектировщика по 384-ФЗ)','Контроль складирования/хранения, присутствия представителя подрядчика'],decisions:[{q:'Замечания к комплектности ПД/РД?',y:'Уведомление руководителю проекта по эл. почте (7.2.1)',n:'Продолжение контроля'},{q:'Несоответствие продукции/хранения?',y:'Запрет применения до подтверждения (7.2.3–7.2.4)',n:'Допуск продукции'}],outputs:['Результаты входного контроля','Уведомление РП','Запрет применения (при необходимости)'],norms:['384-ФЗ'],apps:[]},
+3:{t:'Операционный контроль',role:'sk',inputs:['Ход СМР','Технологические карты, ОТД'],actions:['Верификация операционного контроля подрядчика','Проверка последовательности и состава технологических операций','Проверка испытаний/измерений (поверенные СИ), квалификации персонала'],outputs:['Записи в общем и специальных журналах'],apps:[]},
+4:{t:'Приёмочный контроль (скрытые работы)',role:'sk',inputs:['Уведомление-вызов','Готовые конструкции, скрытые работы'],actions:['Освидетельствование скрытых работ, промежуточная приёмка ответственных конструкций','Выборочный геодезический контроль','Подписание актов освидетельствования и двусторонних актов','Перечень — по ПД/РД и прил. А СП 543.1325800.2024'],decisions:[{q:'Скрытые работы предъявлены, акты подписаны?',y:'Допуск последующих работ',n:'Послед. работы НЕ допускаются; повторное освид. с инстр./лаб. исслед. за счёт подрядчика (7.5.1, 7.6)'}],outputs:['Акты освидетельствования','Чек-листы (Прил. 4)','Полевые исполнительные схемы'],norms:['ст. 53 ГрК РФ','СП 543.1325800.2024'],apps:[4]},
+5:{t:'Нарушения — АФН (петля устранения)',role:'sk',afn:true,inputs:['Выявленное при СК нарушение'],actions:['АФН (Прил. 7), 2 экз., 3 подписи: рук. направления СК, Специалист СК, представитель подрядчика','Чёткая привязка к ПД/РД/НТД; обязательный фотоотчёт','Срок устранения — на объекте; регистрация в журнале АФН (Прил. 9)','Особое: сроки СМР — отдельным АФН; сроки ПИР — служебка РП в Правовую (не АФН); отсутствие техрешений — остановка работ; не объединять разнохарактерные нарушения'],decisions:[{q:'Подрядчик подписывает АФН?',y:'Вручение 1-го экз. под роспись',n:'Мотив. обоснование → АФН письмом (Прил. 8)'},{q:'Нарушение устранено в срок?',y:'Запись в журнал, отметка «устранено», статус в журнале АФН (Прил. 9)',n:'Письмо-требование (Прил. 10); при повторном — группировка по договорам → Правовая служба (Прил. 11) → претензия'}],outputs:['АФН (Прил. 7)','Журнал АФН (Прил. 9)','Письма (Прил. 8, 10)','Служебка в Правовую (Прил. 11)'],term:'Срок устранения — реалистичный, фиксируется в АФН',norms:['ст. 53 ГрК РФ'],apps:[7,8,9,10,11]},
+6:{t:'Приёмка и подписание ИД',role:'sk',inputs:['ИД на этапы работ','Чек-листы (Прил. 4)','Заключения инстр./лаб. контроля','Фотофиксация с координатами'],actions:['Проверка ИД: комплектность, корректность, достоверность','Проверка ведения общего и специальных журналов'],decisions:[{q:'Есть замечания к ИД?',y:'Ведомость замечаний → письмо подрядчику (Прил. 12)',n:'Специалист СК подписывает ИД'}],outputs:['Подписанная ИД: 2 экз. — архив техзаказчика','1 экз. в РСО — письмо (Прил. 13) + акт приёма-передачи','1 экз. — подрядчику'],term:'Акты освид. — не ранее даты сводного экспертного заключения',norms:['Приказ Минстроя № 344/пр от 16.05.2023','ГОСТ Р 51872-2019','Регламент приёма-передачи ИД'],apps:[4,12,13]},
+7:{t:'Проверка КС-2 / приёмка работ',role:'contractor',inputs:['КС-2 (на основании КС-6а)','Полный комплект ИД'],actions:['Проверка соответствия физ. объёмов и требований ПД/РД','Наличие полного комплекта подписанной ИД и журналов','Тождественность: КС-2 ↔ ИД, КС-2 ↔ смета/СВОР; сверка с КС-6а','Факт устранения ранее зафиксированных АФН','Комплексные расценки — только при полном выполнении'],decisions:[{q:'Нарушений нет?',y:'Виза/штамп на КС-2: «Объёмы соответствуют ИД, качество соответствует техрегламентам» (подпись, ФИО)',n:'Возврат на устранение / АФН'}],outputs:['Завизированный КС-2','Чек-лист приёмки (Прил. 14)'],apps:[14]},
+8:{t:'Отчётность',role:'tz',inputs:['Данные о ходе работ, мобилизации, готовности'],actions:['Оперативный отчёт по запросу (численность, техника)','Ежедневный контроль отчёта о мобилизации (Прил. 15)','Еженедельно — сводная отчётность и расчёт степени готовности (Прил. 16 / 17)','Поддержание журнала АФН; выгрузка документации в досье объекта','Выходные/праздники: план (Прил. 18), отчёт (Прил. 19), HR-Link','Справки к совещанию (Прил. 20), протоколы (Прил. 21); мессенджер/почта'],outputs:['Сводная отчётность','Расчёт степени готовности','Досье объекта на сервере'],term:'Мобилизация — ежедневно; сводная — еженедельно',apps:[15,16,17,18,19,20,21]},
+9:{t:'Цифровизация',role:'sk',inputs:['Информационные системы управления строительством'],actions:['Участие в эксплуатации и развитии ИС','Актуализация хода работ, подписание ИД и АФН в ИС','Участие в обучении'],outputs:['Актуальные данные и подписанные документы в ИС'],apps:[]}
+};
+// board layout
+const NODES=[
+ {id:'start',kind:'term',x:300,y:20,w:300,h:50,t:'Старт: договор · объект · ПП РФ № 468'},
+ {id:'p0',kind:'phase',s:0,x:335,y:110,w:270,h:72},
+ {id:'p1',kind:'phase',s:1,x:335,y:240,w:270,h:72},
+ {id:'d1',kind:'dec',x:380,y:370,w:180,h:104,t:'Уведомление-вызов в срок и по форме?'},
+ {id:'s1',kind:'side',tone:'stop',x:720,y:392,w:300,h:72,t:'Послед. работы не допускаются; не принимаются до обследования (п. 6.4)'},
+ {id:'p2',kind:'phase',s:2,x:335,y:540,w:270,h:72},
+ {id:'d2',kind:'dec',x:380,y:670,w:180,h:104,t:'Замечания к комплектности ПД/РД?'},
+ {id:'s2',kind:'side',tone:'info',x:720,y:692,w:300,h:64,t:'Уведомление руководителю проекта по эл. почте'},
+ {id:'p3',kind:'phase',s:3,x:335,y:840,w:270,h:72},
+ {id:'p4',kind:'phase',s:4,x:335,y:970,w:270,h:72},
+ {id:'d3',kind:'dec',x:380,y:1100,w:180,h:108,t:'Скрытые работы предъявлены, акты подписаны?'},
+ {id:'s3',kind:'side',tone:'stop',x:720,y:1118,w:300,h:80,t:'Послед. работы не допускаются; повторное освид. за счёт подрядчика (7.5.1)'},
+ {id:'dn',kind:'dec',x:380,y:1250,w:180,h:104,t:'Выявлено нарушение при СК?'},
+ {id:'p5',kind:'phase',s:5,x:740,y:1262,w:280,h:80},
+ {id:'du',kind:'dec',x:790,y:1400,w:180,h:104,t:'Нарушение устранено в срок?'},
+ {id:'s4',kind:'side',tone:'escal',x:1070,y:1418,w:300,h:90,t:'Не устранено → группировка по договорам → Правовая служба (Прил. 11) → претензия'},
+ {id:'p6',kind:'phase',s:6,x:335,y:1540,w:270,h:72},
+ {id:'s6',kind:'side',tone:'output',x:20,y:1540,w:285,h:80,t:'Подписанная ИД: 2 экз. архив · 1 в РСО (Прил. 13) · 1 подрядчику'},
+ {id:'d4',kind:'dec',x:380,y:1670,w:180,h:104,t:'Замечания к ИД?'},
+ {id:'s5',kind:'side',tone:'rework',x:20,y:1688,w:285,h:68,t:'Ведомость замечаний → письмо подрядчику (Прил. 12), возврат на доработку'},
+ {id:'p7',kind:'phase',s:7,x:335,y:1830,w:270,h:72},
+ {id:'p8',kind:'phase',s:8,x:335,y:1960,w:270,h:72},
+ {id:'p9',kind:'phase',s:9,x:335,y:2090,w:270,h:72},
+ {id:'res',kind:'term',fin:true,x:300,y:2220,w:340,h:58,t:'Результаты СК: АФН · подписанная ИД и КС-2 · отчётность'}
+];
+const EDGES=[
+ ['start','b','p0','t'],['p0','b','p1','t'],['p1','b','d1','t'],
+ ['d1','b','p2','t','да','y'],['d1','r','s1','l','нет','n'],
+ ['p2','b','d2','t'],['d2','b','p3','t','нет','n'],['d2','r','s2','l','да','y'],
+ ['p3','b','p4','t'],['p4','b','d3','t'],
+ ['d3','b','dn','t','да','y'],['d3','r','s3','l','нет','n'],
+ ['dn','b','p6','t','нет','n'],['dn','r','p5','l','да','y'],
+ ['p5','b','du','t'],['du','l','p6','r','устранено','y'],['du','r','s4','l','нет','n'],
+ ['p6','b','d4','t'],['p6','l','s6','r','',null,true],
+ ['d4','l','s5','r','да','y'],['d4','b','p7','t','нет','n'],
+ ['p7','b','p8','t'],['p8','b','p9','t'],['p9','b','res','t']
+];
+// render legend
+document.getElementById('legend').innerHTML=Object.values(ROLES).map(r=>`<span class="lg"><b style="color:${r.c}">●</b>${r.n}</span>`).join('');
+const NM={};NODES.forEach(n=>NM[n.id]=n);
+const board=document.getElementById('board');
+const svg=document.getElementById('links');
+// nodes
+NODES.forEach(n=>{
+ const d=document.createElement('div');
+ const role=n.kind==='phase'?ROLES[STAGES[n.s].role]:null;
+ d.className='node '+n.kind+(n.kind==='side'?' '+n.tone:'')+(n.fin?' fin':'');
+ d.style.left=n.x+'px';d.style.top=n.y+'px';d.style.width=n.w+'px';d.style.minHeight=n.h+'px';
+ if(n.kind==='phase'){d.style.borderTopColor=role.c;
+   d.innerHTML=`<span class="nh" style="background:${role.c}">Фаза ${n.s}</span><div class="nt">${STAGES[n.s].t}</div><div class="ns">${role.n}</div><span class="more">детали ▸</span>`;
+   d.onclick=(e)=>{e.stopPropagation();openDrawer(n.s);};
+ } else if(n.kind==='dec'){d.innerHTML=`<div class="nt">◇ ${n.t}</div>`;}
+ else if(n.kind==='term'){d.innerHTML=`<div class="nt">${n.t}</div>`;}
+ else {d.innerHTML=`<div>${n.t}</div>`;}
+ board.appendChild(d);
+});
+// edges
+function anchor(n,a){const cx=n.x+n.w/2,cy=n.y+n.h/2;if(a==='t')return[cx,n.y];if(a==='b')return[cx,n.y+n.h];if(a==='l')return[n.x,cy];return[n.x+n.w,cy];}
+const NS='http://www.w3.org/2000/svg';
+svg.innerHTML=`<defs><marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#5b7186"/></marker></defs>`;
+let maxX=0,maxY=0;NODES.forEach(n=>{maxX=Math.max(maxX,n.x+n.w);maxY=Math.max(maxY,n.y+n.h);});
+svg.setAttribute('width',maxX+80);svg.setAttribute('height',maxY+80);
+board.style.width=(maxX+80)+'px';board.style.height=(maxY+120)+'px';
+EDGES.forEach(e=>{
+ const[a,fa,b,ta,label,yn,dash]=e;const A=NM[a],B=NM[b];
+ const[sx,sy]=anchor(A,fa),[ex,ey]=anchor(B,ta);
+ let dpath,mx,my;
+ if(fa==='b'||fa==='t'){const midY=(sy+ey)/2;dpath=`M ${sx} ${sy} L ${sx} ${midY} L ${ex} ${midY} L ${ex} ${ey}`;mx=(sx+ex)/2;my=midY;}
+ else{const midX=(sx+ex)/2;dpath=`M ${sx} ${sy} L ${midX} ${sy} L ${midX} ${ey} L ${ex} ${ey}`;mx=midX;my=(sy+ey)/2;}
+ const p=document.createElementNS(NS,'path');p.setAttribute('d',dpath);
+ p.setAttribute('fill','none');p.setAttribute('stroke',dash?'#9bb0c2':'#5b7186');
+ p.setAttribute('stroke-width',dash?'1.6':'2');if(dash)p.setAttribute('stroke-dasharray','5 4');
+ p.setAttribute('marker-end','url(#ah)');svg.appendChild(p);
+ if(label){const l=document.createElement('div');l.className='elabel'+(yn?' '+yn:'');l.textContent=label;l.style.left=mx+'px';l.style.top=my+'px';board.appendChild(l);}
+});
+// pan & zoom
+let tx=40,ty=20,sc=0.82;const vp=document.getElementById('viewport');
+function apply(){board.style.transform=`translate(${tx}px,${ty}px) scale(${sc})`;}
+apply();
+let pan=false,px,py;
+vp.addEventListener('mousedown',e=>{if(e.target.closest('.node.phase'))return;pan=true;px=e.clientX;py=e.clientY;vp.classList.add('grab');});
+window.addEventListener('mousemove',e=>{if(!pan)return;tx+=e.clientX-px;ty+=e.clientY-py;px=e.clientX;py=e.clientY;apply();});
+window.addEventListener('mouseup',()=>{pan=false;vp.classList.remove('grab');});
+vp.addEventListener('wheel',e=>{e.preventDefault();const r=vp.getBoundingClientRect();const mx=e.clientX-r.left,my=e.clientY-r.top;const f=e.deltaY<0?1.12:1/1.12;const ns=Math.min(2.2,Math.max(0.3,sc*f));tx=mx-(mx-tx)*(ns/sc);ty=my-(my-ty)*(ns/sc);sc=ns;apply();},{passive:false});
+function zoom(f){const r=vp.getBoundingClientRect();const mx=r.width/2,my=r.height/2;const ns=Math.min(2.2,Math.max(0.3,sc*f));tx=mx-(mx-tx)*(ns/sc);ty=my-(my-ty)*(ns/sc);sc=ns;apply();}
+function fit(){const r=vp.getBoundingClientRect();const bw=maxX+80,bh=maxY+120;sc=Math.min(r.width/bw,r.height/bh)*0.96;tx=(r.width-bw*sc)/2;ty=10;apply();}
+setTimeout(fit,60);window.addEventListener('resize',fit);
+// drawer
+function openDrawer(s){
+ const st=STAGES[s],role=ROLES[st.role];
+ const io=(t,arr,cls)=>arr&&arr.length?`<div class="box ${cls||''}"><h4>${t}</h4><ul>${arr.map(x=>`<li>${x}</li>`).join('')}</ul></div>`:'';
+ const decs=st.decisions?st.decisions.map(d=>`<div class="dec2"><h4>Решение</h4><div style="font-weight:600;margin-bottom:5px">${d.q}</div><div class="branch"><span class="yn y">ДА</span><div>${d.y}</div></div><div class="branch"><span class="yn n">НЕТ</span><div>${d.n}</div></div></div>`).join(''):'';
+ const afn=st.afn?`<div class="afn"><h4>Петля устранения (АФН)</h4><div class="row"><div class="stp">Выявлено нарушение</div><span class="ar">→</span><div class="stp">АФН (Прил.7): 3 подписи, фото</div><span class="ar">→</span><div class="stp">Журнал АФН (Прил.9), срок</div><span class="ar">→</span><div class="stp d">Устранено?</div></div><div class="row" style="margin-top:8px"><span class="yn y">ДА</span><div class="stp">Отметка «устранено», статус закрыт</div><span class="yn n" style="margin-left:8px">НЕТ</span><div class="stp e">Письмо (Прил.10) → Правовая служба (Прил.11) → претензия</div></div></div>`:'';
+ const meta=[];if(st.term)meta.push(`<span class="pill term">⏱ ${st.term}</span>`);(st.norms||[]).forEach(n=>meta.push(`<span class="pill norm">${n}</span>`));
+ const apps=(st.apps||[]).map(a=>`<span class="app" title="${APPS[a]}">Прил. ${a}</span>`).join('');
+ document.getElementById('drawerInner').innerHTML=`<div class="dh"><span class="x" onclick="closeDrawer()">✕</span><div class="num">Фаза ${s}</div><h2>${st.t}</h2><span class="role" style="background:${role.c}">${role.n}</span></div><div class="dc">${io('Вход',st.inputs,'io')}${io('Действия',st.actions)}${decs}${afn}${io('Выход / документы',st.outputs,'io')}${apps?`<div class="box"><h4>Приложения</h4>${apps}</div>`:''}${meta.length?`<div class="box"><h4>Сроки и нормы</h4><div class="meta">${meta.join('')}</div></div>`:''}</div>`;
+ document.getElementById('drawer').classList.add('on');document.getElementById('scrim').classList.add('on');
+}
+function closeDrawer(){document.getElementById('drawer').classList.remove('on');document.getElementById('scrim').classList.remove('on');}
+window.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+</script></body></html>
